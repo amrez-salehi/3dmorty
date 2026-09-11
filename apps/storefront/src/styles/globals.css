@@ -1596,5 +1596,36 @@ html[dir="rtl"] .font-serif {
 .footer-violet-social a { width: 32px; height: 32px; border-color: rgba(190,168,255,.38); border-radius: 10px; background: rgba(124,79,230,.08); font-size: 0; transition: transform .18s,background .18s,color .18s,border-color .18s; }
 .footer-violet-social svg { width: 17px; height: 17px; }
 .footer-violet-social a:hover { transform: translateY(-2px); border-color: #c6abff; background: #8d5bfa; color: #fff; }
+.account-main,
+.account-sidebar {
+  border-color: rgba(112, 91, 205, .2);
+  background: linear-gradient(145deg, rgba(248, 249, 255, .9) 0%, rgba(236, 235, 255, .78) 100%);
+  box-shadow: 0 16px 42px rgba(70, 62, 151, .08), inset 0 1px rgba(255,255,255,.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.account-dashboard-header { border-color: rgba(112, 91, 205, .16); }
+.account-dashboard-chips span,
+.account-stat-card,
+.account-panel,
+.account-quick-card {
+  border-color: rgba(112, 91, 205, .16);
+  background: rgba(255, 255, 255, .54);
+  box-shadow: inset 0 1px rgba(255,255,255,.72);
+}
+.account-stat-card > span,
+.account-order-primary > span,
+.account-orders-empty > span,
+.account-favorites-empty-icon,
+.account-quick-icon {
+  background: linear-gradient(145deg, #f0edff, #e2e8ff);
+  color: var(--color-accent-dark);
+}
+.account-panel-head,
+.account-order-row,
+.account-quick-card { border-color: rgba(112, 91, 205, .14); }
+.account-nav-link:hover { background: rgba(113, 88, 218, .1); }
+.account-nav-link.is-active { background: linear-gradient(100deg, rgba(123, 93, 224, .18), rgba(167, 142, 255, .1)); color: var(--color-accent-dark); }
+.account-quick-card:hover { border-color: rgba(112, 91, 205, .32); background: rgba(255,255,255,.72); }
 @media (max-width: 1023px) { .footer-newsletter-inner { grid-template-columns: auto 1fr minmax(250px, 1.1fr) 100px; gap: 14px; }.footer-newsletter-note { display:none; }.footer-newsletter-mascot { height:110px; }.footer-violet-main { grid-template-columns: 1.3fr 1fr 1fr; gap: 28px; }.footer-contact { grid-column: 1 / -1; grid-template-columns: auto repeat(3, 1fr); align-items:center; border-top:1px solid rgba(198,181,255,.13); border-right:0; padding:22px 0 0; } }
 @media (max-width: 639px) { .footer-newsletter-inner { min-height: 254px; grid-template-columns: auto 1fr; align-content:start; gap: 12px; padding-top: 22px; padding-bottom: 20px; }.footer-envelope { width:45px; height:45px; border-radius:13px; font-size:26px; }.footer-newsletter-copy strong { font-size:15px; }.footer-newsletter-copy span { font-size:10px; }.footer-subscribe { grid-column: 1 / -1; height:48px; margin-top:3px; }.footer-subscribe button { width:108px; }.footer-newsletter-mascot { position:absolute; bottom:0; left:10px; width:95px; height:114px; }.footer-violet-main { grid-template-columns: 1fr 1fr; gap: 28px 18px; padding-top:34px; padding-bottom:28px; }.footer-brand { grid-column:1 / -1; }.footer-violet-column, .footer-contact { border-right:0; padding-right:0; }.footer-contact { grid-column:1 / -1; grid-template-columns:1fr; gap:7px; border-top:1px solid rgba(198,181,255,.13); padding-top:21px; }.footer-violet-legal>div { align-items:flex-start; flex-direction:column; gap:5px; padding-top:13px; padding-bottom:13px; font-size:9px; } }
