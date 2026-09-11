@@ -1557,6 +1557,32 @@ html[dir="rtl"] .font-serif {
   -webkit-backdrop-filter: blur(18px);
 }
 
+.favorite-login-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 130;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(15, 13, 43, .58);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.favorite-login-modal {
+  position: relative;
+  width: min(100%, 390px);
+  border: 1px solid rgba(113, 86, 208, .2);
+  border-radius: 18px;
+  background: linear-gradient(145deg, #faf9ff 0%, #f0efff 100%);
+  padding: 34px 28px 28px;
+  text-align: center;
+  box-shadow: 0 24px 70px rgba(21, 16, 74, .28);
+  color: var(--color-ink);
+}
+.favorite-login-close { position: absolute; top: 10px; right: 12px; display: grid; width: 34px; height: 34px; place-items: center; border-radius: 9px; color: var(--color-muted); font-size: 25px; line-height: 1; transition: background .18s,color .18s; }.favorite-login-close:hover { background: rgba(104,87,216,.1); color: var(--color-ink); }
+.favorite-login-icon { display: grid; width: 52px; height: 52px; margin: 0 auto 17px; place-items: center; border-radius: 15px; background: linear-gradient(135deg,#a77aff,#6744d5); color: #fff; box-shadow: 0 10px 24px rgba(104,87,216,.28); }.favorite-login-icon svg { width: 24px; height: 24px; }
+.favorite-login-modal h2 { margin: 0; font-size: 18px; font-weight: 700; line-height: 1.7; }.favorite-login-modal p { margin: 8px 0 22px; color: var(--color-text-secondary); font-size: 12px; line-height: 1.9; }.favorite-login-action { display: inline-flex; min-height: 44px; width: 100%; align-items: center; justify-content: center; border-radius: 9px; background: linear-gradient(135deg,#7751e8,#5034b2); color: #fff; font-size: 13px; font-weight: 600; box-shadow: 0 9px 20px rgba(86,55,183,.22); transition: transform .18s,filter .18s; }.favorite-login-action:hover { transform: translateY(-1px); filter: brightness(1.06); }
+
 .footer-violet { background: linear-gradient(130deg, #10102d 0%, #191446 48%, #100e2e 100%); color: #f4f0ff; }
 .footer-newsletter { position: relative; overflow: hidden; border-bottom: 1px solid rgba(192, 171, 255, .3); background: radial-gradient(circle at 70% 45%, rgba(133, 83, 255, .58), transparent 21%), linear-gradient(105deg, #231666, #4b2aa5 53%, #211657); }
 .footer-newsletter::before { position: absolute; inset: 0; content: ""; opacity: .16; background-image: linear-gradient(rgba(255,255,255,.16) 1px, transparent 1px), linear-gradient(90deg,rgba(255,255,255,.16) 1px, transparent 1px); background-size: 42px 42px; mask-image: linear-gradient(90deg, transparent, #000 55%, transparent); }

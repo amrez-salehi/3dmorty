@@ -8,14 +8,20 @@ const toggleFavorite = vi.fn()
 const favoriteState = {
   active: false,
   pending: false,
+  authenticated: true,
 }
 
 vi.mock("@modules/favorites/context/favorites-context", () => ({
   useFavorites: () => ({
+    authenticated: favoriteState.authenticated,
     isFavorite: () => favoriteState.active,
     isPending: () => favoriteState.pending,
     toggleFavorite,
   }),
+}))
+
+vi.mock("@modules/common/components/localized-client-link", () => ({
+  default: ({ children, ...props }: any) => <a {...props}>{children}</a>,
 }))
 
 const product = {
@@ -28,6 +34,7 @@ describe("FavoriteButton", () => {
   beforeEach(() => {
     favoriteState.active = false
     favoriteState.pending = false
+    favoriteState.authenticated = true
     toggleFavorite.mockReset().mockResolvedValue(undefined)
   })
 
@@ -57,5 +64,16 @@ describe("FavoriteButton", () => {
     expect(screen.getByRole("button")).toBeDisabled()
     fireEvent.click(screen.getByRole("button"))
     expect(toggleFavorite).not.toHaveBeenCalled()
+  })
+
+  it("asks guests to sign in before saving a product", () => {
+    favoriteState.authenticated = false
+    render(<FavoriteButton product={product} />)
+
+    fireEvent.click(screen.getByRole("button", { name: "افزودن به علاقه‌مندی‌ها" }))
+
+    expect(toggleFavorite).not.toHaveBeenCalled()
+    expect(screen.getByRole("dialog")).toBeInTheDocument()
+    expect(screen.getByRole("link", { name: "ورود یا ثبت‌نام" })).toHaveAttribute("href", "/account")
   })
 })

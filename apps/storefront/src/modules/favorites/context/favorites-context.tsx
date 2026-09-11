@@ -17,6 +17,7 @@ const STORAGE_KEY = "3dmorty.favorite-product-ids.v1"
 type Toast = { id: number; message: string; tone: "success" | "error" }
 
 type FavoritesContextValue = {
+  authenticated: boolean
   favorites: FavoriteRecord[]
   favoriteIds: ReadonlySet<string>
   isInitialized: boolean
@@ -249,6 +250,7 @@ export function FavoritesProvider({
   const favoriteIds = useMemo(() => new Set(ids), [ids])
   const value = useMemo<FavoritesContextValue>(
     () => ({
+      authenticated,
       favorites,
       favoriteIds,
       isInitialized,
@@ -260,7 +262,7 @@ export function FavoritesProvider({
       toggleFavorite,
       refresh: load,
     }),
-    [error, favoriteIds, favorites, isInitialized, isLoading, load, pendingIds, toggleFavorite]
+    [authenticated, error, favoriteIds, favorites, isInitialized, isLoading, load, pendingIds, toggleFavorite]
   )
 
   return (

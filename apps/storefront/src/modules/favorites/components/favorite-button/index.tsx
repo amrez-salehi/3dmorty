@@ -1,7 +1,9 @@
 "use client"
 
+import { useState } from "react"
 import type { FavoriteProduct } from "@lib/favorites/types"
 import { useFavorites } from "@modules/favorites/context/favorites-context"
+import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 export default function FavoriteButton({
   product,
@@ -12,12 +14,14 @@ export default function FavoriteButton({
   variant?: "card" | "detail"
   className?: string
 }) {
-  const { isFavorite, isPending, toggleFavorite } = useFavorites()
+  const { authenticated, isFavorite, isPending, toggleFavorite } = useFavorites()
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false)
   const active = isFavorite(product.id)
   const pending = isPending(product.id)
   const label = active ? "حذف از علاقه‌مندی‌ها" : "افزودن به علاقه‌مندی‌ها"
 
   return (
+    <>
     <button
       type="button"
       aria-label={label}
@@ -26,6 +30,10 @@ export default function FavoriteButton({
       onClick={(event) => {
         event.preventDefault()
         event.stopPropagation()
+        if (!authenticated) {
+          setShowLoginPrompt(true)
+          return
+        }
         void toggleFavorite(product).catch(() => undefined)
       }}
       className={`group/favorite inline-flex min-h-11 items-center justify-center gap-2 rounded-[8px] border transition duration-200 disabled:cursor-wait disabled:opacity-70 ${
@@ -41,6 +49,18 @@ export default function FavoriteButton({
       {pending ? <Spinner /> : <HeartIcon active={active} />}
       {variant === "detail" && <span>{label}</span>}
     </button>
+    {showLoginPrompt && (
+      <div className="favorite-login-backdrop" role="presentation" onMouseDown={() => setShowLoginPrompt(false)}>
+        <div className="favorite-login-modal" role="dialog" aria-modal="true" aria-labelledby="favorite-login-title" onMouseDown={(event) => event.stopPropagation()}>
+          <button type="button" className="favorite-login-close" aria-label="بستن" onClick={() => setShowLoginPrompt(false)}>×</button>
+          <span className="favorite-login-icon" aria-hidden="true"><HeartIcon active /></span>
+          <h2 id="favorite-login-title">برای افزودن به علاقه‌مندی‌ها وارد شوید</h2>
+          <p>با ورود به حساب کاربری، انتخاب‌های شما همیشه ذخیره می‌مانند.</p>
+          <LocalizedClientLink href="/account" className="favorite-login-action" onClick={() => setShowLoginPrompt(false)}>ورود یا ثبت‌نام</LocalizedClientLink>
+        </div>
+      </div>
+    )}
+    </>
   )
 }
 
