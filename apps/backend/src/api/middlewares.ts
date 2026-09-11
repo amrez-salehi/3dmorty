@@ -79,7 +79,7 @@ const authRateLimit = (
       // Local development should remain usable when Redis is not running.
       // Production keeps the fail-closed behavior so auth endpoints never
       // operate without their abuse-protection layer.
-      if (process.env.NODE_ENV !== "production") {
+      if (process.env.NODE_ENV === "development") {
         next()
         return
       }
