@@ -43,10 +43,11 @@
   /* A translucent page surface keeps the site-wide blue/lilac canvas visible
      behind every route, including cart, account and checkout. */
   --color-background: rgba(231, 237, 255, 0.58);
-  --color-surface: #ececf4;
-  --color-surface-strong: #dfdeeb;
-  --color-cream: #d9d6f0;
-  --color-light-cream: #f2f1f8;
+  /* Cool blue/lilac surfaces keep every route on the same airy theme. */
+  --color-surface: #e8eeff;
+  --color-surface-strong: #dce5ff;
+  --color-cream: #dce3ff;
+  --color-light-cream: #f4f6ff;
   --color-accent: #6857d8;
   --color-accent-dark: #40358f;
   --color-accent-muted: #6d668d;
@@ -318,7 +319,7 @@ html[lang="en"] body {
     @apply text-[10px] tracking-[.12em] text-[var(--color-muted)];
   }
   .mobile-bottom-nav {
-    @apply fixed inset-x-0 bottom-0 z-40 grid h-[64px] grid-cols-5 border-t border-[var(--color-border)] bg-[rgba(250,248,243,.97)] pb-[env(safe-area-inset-bottom)] shadow-[0_-10px_30px_rgba(32,32,29,.06)] backdrop-blur-md small:hidden;
+    @apply fixed inset-x-0 bottom-0 z-40 grid h-[64px] grid-cols-5 border-t border-[var(--color-border)] bg-[rgba(244,246,255,.97)] pb-[env(safe-area-inset-bottom)] shadow-[0_-10px_30px_rgba(32,32,29,.06)] backdrop-blur-md small:hidden;
   }
   .mobile-bottom-nav a {
     @apply flex min-w-0 flex-col items-center justify-center gap-1 text-[9px] text-[var(--color-text-secondary)];
@@ -907,7 +908,7 @@ html[lang="en"] body {
     min-width: 0;
     border: 1px solid var(--color-border);
     border-radius: 18px;
-    background: #f1ede5;
+    background: rgba(240, 243, 255, 0.86);
   }
   .account-main {
     order: 2;
@@ -963,7 +964,7 @@ html[lang="en"] body {
   .account-dashboard-chips span {
     border: 1px solid var(--color-border);
     border-radius: 999px;
-    background: rgba(250, 248, 243, 0.54);
+    background: rgba(247, 249, 255, 0.54);
     padding: 7px 12px;
     color: var(--color-muted);
     font-size: 9px;
@@ -981,7 +982,7 @@ html[lang="en"] body {
     gap: 12px;
     border: 1px solid var(--color-border);
     border-radius: 12px;
-    background: rgba(250, 248, 243, 0.68);
+    background: rgba(247, 249, 255, 0.68);
     padding: 17px 18px;
   }
   .account-stat-card p {
@@ -1010,7 +1011,7 @@ html[lang="en"] body {
     overflow: hidden;
     border: 1px solid var(--color-border);
     border-radius: 14px;
-    background: rgba(250, 248, 243, 0.58);
+    background: rgba(247, 249, 255, 0.58);
   }
   .account-panel-head {
     display: flex;
@@ -1250,13 +1251,13 @@ html[lang="en"] body {
     gap: 13px;
     border: 1px solid var(--color-border);
     border-radius: 12px;
-    background: rgba(250, 248, 243, 0.58);
+    background: rgba(247, 249, 255, 0.58);
     padding: 16px 18px;
     transition: border-color 180ms ease, background 180ms ease;
   }
   .account-quick-card:hover {
     border-color: #bdb2a3;
-    background: rgba(250, 248, 243, 0.82);
+    background: rgba(247, 249, 255, 0.82);
   }
   .account-quick-icon {
     display: grid;
@@ -1300,7 +1301,7 @@ html[lang="en"] body {
     transition: background 180ms ease, color 180ms ease;
   }
   .account-nav-link:hover {
-    background: rgba(223, 216, 202, 0.58);
+    background: rgba(144, 160, 236, 0.2);
     color: var(--color-ink);
   }
   .account-nav-link.is-active {

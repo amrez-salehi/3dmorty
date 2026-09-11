@@ -38,7 +38,7 @@ export default function FavoriteButton({
       }}
       className={`group/favorite inline-flex min-h-11 items-center justify-center gap-2 rounded-[8px] border transition duration-200 disabled:cursor-wait disabled:opacity-70 ${
         variant === "card"
-          ? "h-11 w-11 bg-[rgba(250,248,243,.94)] shadow-[0_5px_18px_rgba(32,32,29,.08)] backdrop-blur"
+          ? "h-11 w-11 bg-[rgba(244,246,255,.94)] shadow-[0_5px_18px_rgba(32,32,29,.08)] backdrop-blur"
           : "min-w-11 px-3.5 text-xs font-medium"
       } ${
         active

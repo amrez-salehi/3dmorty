@@ -52,7 +52,7 @@ export default async function ProductPreview({
         />
         <LocalizedClientLink
           href={`/products/${product.handle}`}
-          className="absolute inset-x-3 bottom-3 hidden min-h-10 translate-y-3 items-center justify-center rounded-[6px] bg-[rgba(250,248,243,.94)] text-xs font-medium text-[var(--color-ink)] opacity-0 backdrop-blur transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 small:flex"
+          className="absolute inset-x-3 bottom-3 hidden min-h-10 translate-y-3 items-center justify-center rounded-[6px] bg-[rgba(244,246,255,.94)] text-xs font-medium text-[var(--color-ink)] opacity-0 backdrop-blur transition duration-300 group-hover:translate-y-0 group-hover:opacity-100 small:flex"
         >
           مشاهده جزئیات
         </LocalizedClientLink>
