@@ -4,17 +4,18 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import ProductPreview from "@modules/products/components/product-preview"
 import HomeHeroSlider from "@modules/home/components/home-hero-slider"
 
-const roomEdits = [
-  { title: "نشیمن", image: "/images/harmendecor/hero-living-room.webp", href: "/store?q=نشیمن" },
-  { title: "غذاخوری", image: "/images/harmendecor/editorial-dining.webp", href: "/store?q=میز" },
-  { title: "فضای مطالعه", image: "/images/harmendecor/editorial-reading.webp", href: "/store?q=صندلی" },
+const categoryEdits = [
+  { title: "فیگورها و کلکسیونی", image: "/images/3dmorty/catalog/model-08-viking-bust/01-front-three-quarter.png", href: "/categories/figures-collectibles" },
+  { title: "گیمینگ و میز کار", image: "/images/3dmorty/catalog/model-18-world-cup-controller-stand/01-front-three-quarter.png", href: "/categories/desk-gaming" },
+  { title: "دکور و نظم‌دهنده", image: "/images/3dmorty/catalog/06-gothic-corset-brush-holder.png", href: "/categories/organizers-decor" },
+  { title: "هدیه و اکسسوری", image: "/images/3dmorty/catalog/12-botanical-hair-stick-lifestyle.png", href: "/categories/gift-hair-accessories" },
 ]
 
 const benefits = [
-  { title: "انتخاب دقیق", description: "محصولات گزیده و ماندگار", icon: "select" },
-  { title: "متریال اصیل", description: "کیفیتی که دیده و لمس می‌شود", icon: "material" },
-  { title: "ارسال مطمئن", description: "بسته‌بندی ویژه‌ی محصولات دکور", icon: "delivery" },
-  { title: "۷ روز بازگشت", description: "برای یک انتخاب آسوده", icon: "return" },
+  { title: "طراحی متفاوت", description: "فیگور و دکور برای سلیقه‌های خاص", icon: "select" },
+  { title: "چاپ سه‌بعدی", description: "جزئیات لایه‌ای و فرم‌های کلکسیونی", icon: "material" },
+  { title: "ارسال مطمئن", description: "بسته‌بندی مناسب محصولات ظریف", icon: "delivery" },
+  { title: "انتخاب آگاهانه", description: "جزئیات محصول پیش از خرید در دسترس است", icon: "return" },
 ] as const
 
 function BenefitIcon({ name }: { name: (typeof benefits)[number]["icon"] }) {
@@ -61,13 +62,28 @@ export default function HomeLanding({
   region: HttpTypes.StoreRegion
   locale?: string | null
 }) {
+  const inGroup = (group: string) =>
+    products.filter(
+      (product) =>
+        (product.metadata as Record<string, unknown> | undefined)?.catalog_group === group
+    )
+  const newest = products.filter(
+    (product) => (product.metadata as Record<string, unknown> | undefined)?.featured === true
+  )
+  const figures = inGroup("figures-collectibles")
+  const accessoriesAndDecor = products.filter(
+    (product) =>
+      (product.metadata as Record<string, unknown> | undefined)?.catalog_group !==
+      "figures-collectibles"
+  )
+
   return (
-    <main className="overflow-hidden bg-[var(--color-background)] text-[var(--color-text)]">
+    <main className="home-cosmos overflow-hidden text-[var(--color-text)]">
       <section className="content-container pt-4 small:pt-7" aria-labelledby="home-hero-title">
         <HomeHeroSlider />
       </section>
 
-      <section className="content-container" aria-label="مزیت‌های هارمن دکور">
+      <section className="content-container" aria-label="مزیت‌های 3DMorty">
         <div className="home-benefits">
           {benefits.map((item) => (
             <div key={item.title} className="home-benefit">
@@ -81,18 +97,19 @@ export default function HomeLanding({
         </div>
       </section>
 
-      <section className="content-container scroll-mt-[190px] py-16 small:py-24" aria-labelledby="rooms-title">
+      <section className="content-container scroll-mt-[190px] py-16 small:py-24" aria-labelledby="categories-title">
         <div className="mb-8 max-w-2xl small:mb-12">
-          <h2 id="rooms-title" className="hd-section-title">خرید بر اساس فضا</h2>
+          <p className="text-xs font-medium text-[var(--color-accent-dark)]">3DMorty / دنیای چاپ سه‌بعدی</p>
+          <h2 id="categories-title" className="hd-section-title mt-2">کالکشن مورد علاقه‌ات را پیدا کن</h2>
         </div>
-        <div className="no-scrollbar -mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2 small:mx-0 small:grid small:grid-cols-3 small:gap-5 small:px-0">
-          {roomEdits.map((room) => (
-            <LocalizedClientLink key={room.title} href={room.href} className="group block w-[78vw] max-w-[360px] shrink-0 snap-center small:w-auto small:max-w-none">
+        <div className="no-scrollbar -mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2 small:mx-0 small:grid small:grid-cols-4 small:gap-5 small:px-0">
+          {categoryEdits.map((category) => (
+            <LocalizedClientLink key={category.title} href={category.href} className="group block w-[78vw] max-w-[360px] shrink-0 snap-center small:w-auto small:max-w-none">
               <div className="relative aspect-[4/5] overflow-hidden rounded-[10px] bg-[var(--color-surface)]">
-                <Image src={room.image} alt={room.title} fill sizes="(max-width: 1023px) 78vw, 33vw" className="hd-image group-hover:scale-[1.02]" />
+                <Image src={category.image} alt={category.title} fill sizes="(max-width: 1023px) 78vw, 33vw" className="hd-image object-cover group-hover:scale-[1.02]" />
               </div>
               <div className="border-b border-[var(--color-border)] py-4 small:py-5">
-                <h3 className="text-lg font-medium text-[var(--color-ink)] small:text-xl">{room.title}</h3>
+                <h3 className="text-lg font-medium text-[var(--color-ink)] small:text-xl">{category.title}</h3>
               </div>
             </LocalizedClientLink>
           ))}
@@ -100,22 +117,26 @@ export default function HomeLanding({
         <LocalizedClientLink href="/store" className="hd-link mt-7">مشاهده همه محصولات</LocalizedClientLink>
       </section>
 
-      <section className="border-y border-[var(--color-border)] bg-[#eee9df] py-16 small:py-24" aria-labelledby="new-title">
+      <section className="border-y border-[var(--color-border)] bg-[var(--color-surface)] py-16 small:py-24" aria-labelledby="new-title">
         <div className="content-container">
           <div className="mb-9 flex items-end justify-between gap-5 small:mb-12">
-            <div><h2 id="new-title" className="hd-section-title">محصولات تازه</h2><p className="hd-body mt-3 max-w-xl">جدیدترین محصولات اضافه‌شده به مجموعه.</p></div>
+            <div><h2 id="new-title" className="hd-section-title">تازه در 3DMorty</h2><p className="hd-body mt-3 max-w-xl">مدل‌های جدید برای میز، شلف و کلکسیون شما.</p></div>
             <LocalizedClientLink href="/store?sortBy=created_at" className="hd-link hidden xsmall:inline-flex">مشاهده همه</LocalizedClientLink>
           </div>
           <ul className="no-scrollbar -mx-4 flex snap-x gap-3 overflow-x-auto px-4 pb-3 small:mx-0 small:grid small:grid-cols-4 small:gap-5 small:px-0">
-            {products.slice(0, 8).map((product) => <li key={product.id} className="w-[72vw] max-w-[310px] shrink-0 snap-start small:w-auto small:max-w-none"><ProductPreview product={product} region={region} isFeatured /></li>)}
+            {(newest.length ? newest : products).slice(0, 8).map((product) => <li key={product.id} className="w-[72vw] max-w-[310px] shrink-0 snap-start small:w-auto small:max-w-none"><ProductPreview product={product} region={region} isFeatured /></li>)}
           </ul>
           <LocalizedClientLink href="/store?sortBy=created_at" className="hd-button-outline mt-8 w-full xsmall:hidden">همه تازه‌ها</LocalizedClientLink>
         </div>
       </section>
 
       <section className="content-container py-16 small:py-28" aria-labelledby="best-title">
-        <div className="mb-9 text-right small:mb-14"><h2 id="best-title" className="hd-section-title">محبوب‌ترین‌ها</h2></div>
-        <ul className="grid grid-cols-2 gap-x-3 gap-y-10 small:grid-cols-4 small:gap-x-5">{products.slice(8, 16).map((product) => <li key={product.id}><ProductPreview product={product} region={region} /></li>)}</ul>
+        <div className="mb-9 text-right small:mb-14"><p className="text-xs font-medium text-[var(--color-accent-dark)]">برای هدیه یا کلکسیون</p><h2 id="best-title" className="hd-section-title mt-2">فیگورها و مدل‌های کلکسیونی</h2></div>
+        <ul className="grid grid-cols-2 gap-x-3 gap-y-10 small:grid-cols-4 small:gap-x-5">{figures.slice(0, 8).map((product) => <li key={product.id}><ProductPreview product={product} region={region} /></li>)}</ul>
+      </section>
+
+      <section className="border-t border-[var(--color-border)] bg-[var(--color-surface)] py-16 small:py-24" aria-labelledby="gaming-title">
+        <div className="content-container"><div className="mb-9 flex items-end justify-between gap-5"><div><p className="text-xs font-medium text-[var(--color-accent-dark)]">برای میز، نظم‌دهی و هدیه</p><h2 id="gaming-title" className="hd-section-title mt-2">اکسسوری و دکوری‌های خاص</h2></div><LocalizedClientLink href="/store?facet=functional" className="hd-link hidden xsmall:inline-flex">مشاهده همه</LocalizedClientLink></div><ul className="grid grid-cols-2 gap-x-3 gap-y-10 small:grid-cols-4 small:gap-x-5">{accessoriesAndDecor.slice(0, 8).map((product) => <li key={product.id}><ProductPreview product={product} region={region} /></li>)}</ul></div>
       </section>
     </main>
   )

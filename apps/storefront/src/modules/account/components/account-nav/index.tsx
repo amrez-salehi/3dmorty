@@ -112,7 +112,7 @@ const AccountNav = ({
       <div className="hidden small:block" data-testid="account-nav">
         <div>
           <div className="mb-5 border-b border-[var(--color-border)] pb-5">
-            <p className="font-latin mb-2 text-[10px] tracking-[.18em] text-[var(--color-accent-dark)]">HARMEN DECOR</p>
+            <p className="font-latin mb-2 text-[10px] tracking-[.08em] text-[var(--color-accent-dark)]">3DMORTY</p>
             <h3 className="text-lg font-medium text-[var(--color-ink)]">{isPersian ? "حساب من" : "My account"}</h3>
             <p className="mt-2 truncate text-xs text-[var(--color-muted)]">{customer?.email}</p>
           </div>

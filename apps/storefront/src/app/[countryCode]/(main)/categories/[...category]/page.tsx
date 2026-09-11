@@ -7,6 +7,7 @@ import { HttpTypes, StoreRegion } from "@medusajs/types"
 import CategoryTemplate from "@modules/categories/templates"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import { parseOptionValueIds } from "@lib/util/product-option-filters"
+import { parseCatalogFacets } from "@lib/catalog-facets"
 
 type Props = {
   params: Promise<{ category: string[]; countryCode: string }>
@@ -18,6 +19,7 @@ type Props = {
       priceMin?: string
       priceMax?: string
       inStock?: string
+      facet?: string | string[]
     }
   >
 }
@@ -58,12 +60,12 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   try {
     const productCategory = await getCategoryByHandle(params.category)
 
-    const title = productCategory.name + " | Medusa Store"
+    const title = productCategory.name + " | 3DMorty"
 
     const description = productCategory.description ?? `${title} category.`
 
     return {
-      title: `${title} | Medusa Store`,
+      title,
       description,
       alternates: {
         canonical: `${params.category.join("/")}`,
@@ -79,6 +81,7 @@ export default async function CategoryPage(props: Props) {
   const params = await props.params
   const { sortBy, page, priceMin, priceMax, inStock } = searchParams
   const optionValueIds = parseOptionValueIds(searchParams)
+  const catalogFacets = parseCatalogFacets(searchParams)
 
   const productCategory = await getCategoryByHandle(params.category)
 
@@ -96,6 +99,7 @@ export default async function CategoryPage(props: Props) {
       priceMin={priceMin}
       priceMax={priceMax}
       inStock={inStock === "true"}
+      catalogFacets={catalogFacets}
     />
   )
 }

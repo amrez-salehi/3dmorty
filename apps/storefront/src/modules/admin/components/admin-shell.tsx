@@ -1,7 +1,6 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 import { FormEvent, ReactNode, useEffect, useState } from "react"
 import { adminSdk } from "../lib/sdk"
@@ -54,8 +53,8 @@ export function AdminLogin({ onLoggedIn }: { onLoggedIn: () => void }) {
   return <main className="admin-login" dir="rtl">
     <section className="admin-login-card" aria-labelledby="admin-login-title">
       <div className="admin-login-brand">
-        <Image src="/brand/harmendecor-mark.png" alt="HARMENDECOR" width={48} height={48} priority />
-        <span>پنل مدیریت فروشگاه</span>
+        <span className="admin-logo-mark" aria-hidden="true">3D</span>
+        <span>پنل مدیریت 3DMorty</span>
       </div>
       <header className="admin-login-header">
         <h1 id="admin-login-title">خوش آمدید</h1>
@@ -130,7 +129,7 @@ export default function AdminShell({ children, title, description }: { children:
   const logout = async () => { await adminSdk.client.fetch("/auth/logout", { method: "POST", body: {} }).catch(() => undefined); setLoggedIn(false); router.push("/admin") }
   return <div className="admin-root"><div className="admin-layout">
     <aside className={`admin-side ${open ? "open" : ""}`}>
-      <div className="admin-logo"><span className="admin-logo-mark"><Image src="/brand/harmendecor-mark.png" alt="نشان هارمن دکور" width={48} height={48} /></span><span className="admin-logo-divider" aria-hidden="true" /><div className="admin-logo-copy"><strong>هارمن دکور</strong><small>مدیریت فروشگاه</small></div></div>
+      <div className="admin-logo"><span className="admin-logo-mark" aria-hidden="true">3D</span><span className="admin-logo-divider" aria-hidden="true" /><div className="admin-logo-copy"><strong>3DMorty</strong><small>مدیریت فروشگاه</small></div></div>
       <nav className="admin-nav" aria-label="منوی مدیریت">
         {navGroups.map((group) => <div className="admin-nav-group" key={group.label}>
           <span className="admin-nav-label">{group.label}</span>
@@ -147,6 +146,6 @@ export default function AdminShell({ children, title, description }: { children:
       </nav>
       <button className="admin-logout" onClick={logout}><span className="nav-icon"><AdminIcon name="logout" /></span>خروج از حساب</button>
     </aside>
-    <div style={{ minWidth: 0, direction: "rtl" }}><div className="admin-mobilebar"><span className="admin-mobile-brand"><Image src="/brand/harmendecor-mark.png" alt="" width={32} height={32} /><strong>مدیریت فروشگاه</strong></span><button onClick={() => setOpen(!open)} aria-label="باز کردن منو"><AdminIcon name="menu" size={18} /> منو</button></div><main className="admin-main"><header className="admin-topbar"><div className="admin-page-heading"><h1 className="admin-title">{title}</h1>{description && <p className="admin-subtitle">{description}</p>}</div><button className="admin-header-logout" onClick={logout}><AdminIcon name="logout" size={17} /><span>خروج از حساب</span></button></header>{children}</main></div>
+    <div style={{ minWidth: 0, direction: "rtl" }}><div className="admin-mobilebar"><span className="admin-mobile-brand"><span className="admin-logo-mark" aria-hidden="true">3D</span><strong>مدیریت 3DMorty</strong></span><button onClick={() => setOpen(!open)} aria-label="باز کردن منو"><AdminIcon name="menu" size={18} /> منو</button></div><main className="admin-main"><header className="admin-topbar"><div className="admin-page-heading"><h1 className="admin-title">{title}</h1>{description && <p className="admin-subtitle">{description}</p>}</div><button className="admin-header-logout" onClick={logout}><AdminIcon name="logout" size={17} /><span>خروج از حساب</span></button></header>{children}</main></div>
   </div></div>
 }

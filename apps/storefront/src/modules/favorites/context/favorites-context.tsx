@@ -12,7 +12,7 @@ import {
   useState,
 } from "react"
 
-const STORAGE_KEY = "harmendecor.favorite-product-ids.v1"
+const STORAGE_KEY = "3dmorty.favorite-product-ids.v1"
 
 type Toast = { id: number; message: string; tone: "success" | "error" }
 

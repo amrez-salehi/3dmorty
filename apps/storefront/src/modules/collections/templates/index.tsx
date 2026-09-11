@@ -5,6 +5,7 @@ import { SortOptions } from "@modules/store/components/refinement-list/sort-prod
 import PaginatedProducts from "@modules/store/templates/paginated-products"
 import { HttpTypes } from "@medusajs/types"
 import { OptionValueIds } from "@lib/util/product-option-filters"
+import { CatalogFacet } from "@lib/catalog-facets"
 import { getCatalogPriceRange } from "@lib/data/products"
 
 export default async function CollectionTemplate({
@@ -16,6 +17,7 @@ export default async function CollectionTemplate({
   priceMin,
   priceMax,
   inStock,
+  catalogFacets,
 }: {
   sortBy?: SortOptions
   collection: HttpTypes.StoreCollection
@@ -25,6 +27,7 @@ export default async function CollectionTemplate({
   priceMin?: string
   priceMax?: string
   inStock?: boolean
+  catalogFacets?: CatalogFacet[]
 }) {
   const pageNumber = page ? parseInt(page) : 1
   const sort = sortBy || "created_at"
@@ -42,7 +45,6 @@ export default async function CollectionTemplate({
       <div className="mt-8 flex flex-col small:flex-row small:items-start">
         <RefinementList
           sortBy={sort}
-          hideOptionsPicker
           priceRange={priceRange}
         />
         <div className="min-w-0 flex-1">
@@ -62,6 +64,7 @@ export default async function CollectionTemplate({
               priceMin={priceMin}
               priceMax={priceMax}
               inStock={inStock}
+              catalogFacets={catalogFacets}
             />
           </Suspense>
         </div>

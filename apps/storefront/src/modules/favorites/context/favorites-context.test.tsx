@@ -11,8 +11,8 @@ vi.mock("next/navigation", () => ({
 
 const product = {
   id: "prod_test",
-  title: "گلدان سفالی",
-  handle: "clay-vase",
+  title: "فیگور مفصلی کیتسونه",
+  handle: "pink-kitsune-articulated-figure",
   variants: [],
 } as unknown as FavoriteProduct
 
@@ -37,7 +37,7 @@ describe("FavoritesProvider", () => {
 
   it("loads guest favorites from local storage without an API status request", async () => {
     localStorage.setItem(
-      "harmendecor.favorite-product-ids.v1",
+      "3dmorty.favorite-product-ids.v1",
       JSON.stringify([product.id])
     )
     vi.mocked(fetch).mockResolvedValue(

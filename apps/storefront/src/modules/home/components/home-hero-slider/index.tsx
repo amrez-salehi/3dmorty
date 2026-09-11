@@ -6,19 +6,19 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 
 const slides = [
   {
-    image: "/images/harmendecor/hero-living-room.webp",
-    alt: "نشیمن معاصر هارمن دکور با مبلمان بوکله و میز تراورتن",
-    position: "object-[42%_center] small:object-center",
-  },
-  {
-    image: "/images/home-decor/armes-home-hero-dining.png",
-    alt: "فضای غذاخوری مینیمال هارمن دکور",
+    image: "/images/3dmorty/hero/tactical-soldier-wide.png",
+    alt: "فیگور سرباز تاکتیکال 3DMorty",
     position: "object-center",
   },
   {
-    image: "/images/home-decor/armes-home-hero-reading.png",
-    alt: "گوشه مطالعه آرام با صندلی بوکله",
-    position: "object-[38%_center] small:object-center",
+    image: "/images/3dmorty/hero/straw-hat-wide.png",
+    alt: "فیگور انیمه‌ای کلکسیونی 3DMorty",
+    position: "object-center",
+  },
+  {
+    image: "/images/3dmorty/hero/anatomical-heart-wide.png",
+    alt: "مجسمه قلب آناتومیک 3DMorty",
+    position: "object-center",
   },
 ]
 
@@ -40,7 +40,7 @@ export default function HomeHeroSlider() {
     <div
       className="home-minimal-hero"
       aria-roledescription="carousel"
-      aria-label="تصاویر منتخب هارمن دکور"
+      aria-label="محصولات منتخب 3DMorty"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocus={() => setPaused(true)}
@@ -70,11 +70,11 @@ export default function HomeHeroSlider() {
         <LocalizedClientLink href="/store" className="home-minimal-action">
           مشاهده مجموعه
         </LocalizedClientLink>
-        <h1 id="home-hero-title" className="home-minimal-brand" aria-label="Harmen Decor">
-          <Image src="/brand/harmendecor-mark.png" alt="" width={48} height={48} />
+        <h1 id="home-hero-title" className="home-minimal-brand" aria-label="3DMorty">
+          <span className="morty-mark">3D</span>
           <span>
-            <strong>HARMEN</strong>
-            <small>DECOR</small>
+            <strong>3DMorty</strong>
+            <small>PRINTED COLLECTIBLES</small>
           </span>
         </h1>
         <div className="home-minimal-dots" role="tablist" aria-label="انتخاب تصویر">

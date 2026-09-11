@@ -43,7 +43,7 @@ export default async function ProductPreview({
           />
         </LocalizedClientLink>
         <div className="pointer-events-none absolute left-3 top-3 flex flex-col items-start gap-1.5">
-          {cheapestPrice?.price_type === "sale" && <span className="rounded-[5px] bg-[var(--color-clay)] px-2.5 py-1 text-[10px] font-medium text-white">پیشنهاد هارمن</span>}
+          {cheapestPrice?.price_type === "sale" && <span className="rounded-[5px] bg-[var(--color-clay)] px-2.5 py-1 text-[10px] font-medium text-white">پیشنهاد 3DMorty</span>}
           {!inStock && <span className="rounded-[5px] bg-[var(--color-ink)] px-2.5 py-1 text-[10px] text-white">ناموجود</span>}
         </div>
         <FavoriteButton

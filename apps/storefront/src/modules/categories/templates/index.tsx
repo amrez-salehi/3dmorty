@@ -7,6 +7,7 @@ import PaginatedProducts from "@modules/store/templates/paginated-products"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { HttpTypes } from "@medusajs/types"
 import { OptionValueIds } from "@lib/util/product-option-filters"
+import { CatalogFacet } from "@lib/catalog-facets"
 import { getPersianCategoryName } from "@lib/i18n/category-copy"
 import { getCatalogPriceRange } from "@lib/data/products"
 
@@ -19,6 +20,7 @@ export default async function CategoryTemplate({
   priceMin,
   priceMax,
   inStock,
+  catalogFacets,
 }: {
   category: HttpTypes.StoreProductCategory
   sortBy?: SortOptions
@@ -28,6 +30,7 @@ export default async function CategoryTemplate({
   priceMin?: string
   priceMax?: string
   inStock?: boolean
+  catalogFacets?: CatalogFacet[]
 }) {
   const pageNumber = page ? parseInt(page) : 1
   const sort = sortBy || "created_at"
@@ -79,7 +82,6 @@ export default async function CategoryTemplate({
       <div className="mt-8 flex flex-col small:flex-row small:items-start">
         <RefinementList
           sortBy={sort}
-          hideOptionsPicker
           priceRange={priceRange}
         />
         <div className="min-w-0 flex-1">
@@ -99,6 +101,7 @@ export default async function CategoryTemplate({
               priceMin={priceMin}
               priceMax={priceMax}
               inStock={inStock}
+              catalogFacets={catalogFacets}
             />
           </Suspense>
         </div>

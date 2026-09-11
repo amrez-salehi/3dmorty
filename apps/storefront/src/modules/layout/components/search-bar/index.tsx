@@ -6,9 +6,11 @@ import { useRouter } from "next/navigation"
 export default function SearchBar({
   placeholder = "جست‌وجوی محصول، متریال یا فضا",
   compact = false,
+  variant = "default",
 }: {
   placeholder?: string
   compact?: boolean
+  variant?: "default" | "dark-header"
 }) {
   const router = useRouter()
   const [value, setValue] = useState("")
@@ -40,14 +42,14 @@ export default function SearchBar({
           compact
             ? "h-10 border-[var(--color-border)]"
             : "h-14 border-[var(--color-border)] bg-[var(--color-surface)]"
-        }`}
+        } ${variant === "dark-header" ? "brand-header-search-input" : ""}`}
       />
       <button
         type="submit"
         aria-label="جست‌وجو"
         className={`search-submit absolute right-0 top-0 flex w-12 items-center justify-center text-[var(--color-muted)] transition hover:text-[var(--color-ink)] ${
           compact ? "h-10" : "h-14"
-        }`}
+        } ${variant === "dark-header" ? "brand-header-search-submit" : ""}`}
       >
         <svg
           aria-hidden="true"

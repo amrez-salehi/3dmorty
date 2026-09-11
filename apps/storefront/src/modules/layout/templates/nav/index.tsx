@@ -4,7 +4,6 @@ import { getLocale } from "@lib/data/locale-actions"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import CartButton from "@modules/layout/components/cart-button"
 import SearchBar from "@modules/layout/components/search-bar"
-import BrandLogo from "@modules/common/components/brand-logo"
 import MobileMenu from "@modules/layout/components/mobile-menu"
 
 const Icon = ({
@@ -55,8 +54,8 @@ const Icon = ({
 }
 
 const desktopLinks = [
-  ["فروشگاه", "/store"],
-  ["فضاها", "/store?view=room"],
+  ["فیگورها", "/categories/figures-collectibles"],
+  ["گیمینگ", "/categories/desk-gaming"],
   ["کالکشن‌ها", "/collections"],
   ["تازه‌ها", "/store?sortBy=created_at"],
 ]
@@ -68,16 +67,9 @@ export default async function Nav() {
   return (
     <>
       <div className="sticky inset-x-0 top-0 z-40">
-        <div className="brand-announcement">
-          <span>ارسال رایگان سفارش‌های بالای ۳ میلیون تومان</span>
-          <LocalizedClientLink href="/faq">جزئیات ارسال</LocalizedClientLink>
-        </div>
         <header className="brand-header isolate">
-          <nav
-            className="content-container relative z-20 h-[72px] small:flex small:h-[84px] small:items-center small:justify-between small:gap-4"
-            aria-label="ناوبری اصلی"
-          >
-            <div className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center small:hidden">
+          <nav className="content-container brand-header-nav" aria-label="ناوبری اصلی">
+            <div className="brand-header-mobile">
               <MobileMenu />
               <LocalizedClientLink
                 href="/search"
@@ -87,15 +79,10 @@ export default async function Nav() {
                 <Icon name="search" />
               </LocalizedClientLink>
             </div>
-
-            <BrandLogo
-              priority
-              compact
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 small:hidden"
-            />
-            <BrandLogo priority className="hidden shrink-0 small:inline-flex" />
-
-            <div className="hidden flex-1 items-center justify-center gap-7 small:flex medium:gap-9">
+            <LocalizedClientLink href="/" aria-label="3DMorty" className="brand-header-logo brand-header-logo-mobile"><BrandMark /></LocalizedClientLink>
+            <div className="brand-header-desktop">
+              <LocalizedClientLink href="/" aria-label="3DMorty" className="brand-header-logo"><BrandMark /></LocalizedClientLink>
+              <div className="brand-header-links">
               {desktopLinks.map(([label, href]) => (
                 <LocalizedClientLink
                   key={href}
@@ -105,26 +92,19 @@ export default async function Nav() {
                   {label}
                 </LocalizedClientLink>
               ))}
-            </div>
-
-            <div className="absolute left-2 top-1/2 flex -translate-y-1/2 shrink-0 items-center gap-1 small:static small:translate-y-0 small:gap-2">
-              <LocalizedClientLink
-                href="/search"
-                className="brand-icon-button hidden small:inline-flex"
-                aria-label={isPersian ? "جست‌وجو" : "Search"}
-              >
-                <Icon name="search" />
-              </LocalizedClientLink>
+              </div>
+              <div className="brand-header-search"><SearchBar compact variant="dark-header" placeholder={isPersian ? "جست‌وجوی محصولات، شخصیت‌ها، دکور و ..." : "Search products"} /></div>
+              <div className="brand-header-actions">
               <LocalizedClientLink
                 href="/favorites"
-                className="brand-icon-button hidden small:inline-flex"
+                className="brand-icon-button"
                 aria-label="علاقه‌مندی‌ها"
               >
                 <Icon name="heart" />
               </LocalizedClientLink>
               <LocalizedClientLink
                 href="/account"
-                className="brand-icon-button hidden small:inline-flex"
+                className="brand-icon-button"
                 aria-label={isPersian ? "حساب کاربری" : "Account"}
               >
                 <Icon name="user" />
@@ -142,18 +122,9 @@ export default async function Nav() {
               >
                 <CartButton locale={currentLocale} />
               </Suspense>
+              </div>
             </div>
           </nav>
-          <div className="content-container relative z-0 hidden border-t border-[var(--color-border-soft)] py-3 small:block">
-            <SearchBar
-              placeholder={
-                isPersian
-                  ? "جست‌وجوی محصول، متریال یا فضای خانه…"
-                  : "Search by product, material, or room…"
-              }
-              compact
-            />
-          </div>
         </header>
       </div>
 
@@ -181,4 +152,8 @@ export default async function Nav() {
       </nav>
     </>
   )
+}
+
+function BrandMark() {
+  return <><span className="brand-header-cube">3D</span><span className="brand-header-wordmark"><strong>3DMORTY</strong><small>فراتر از تخیل، در دستان تو</small></span></>
 }

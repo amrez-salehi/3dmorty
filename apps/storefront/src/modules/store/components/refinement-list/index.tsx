@@ -8,6 +8,11 @@ import {
   OPTION_VALUE_QUERY_KEY,
   parseOptionValueIds,
 } from "@lib/util/product-option-filters"
+import {
+  CATALOG_FACETS,
+  CATALOG_FACET_QUERY_KEY,
+  parseCatalogFacets,
+} from "@lib/catalog-facets"
 import OptionsPicker from "./options-picker"
 import { SortOptions } from "./sort-products"
 
@@ -53,8 +58,13 @@ export default function RefinementList({
   const minPrice = searchParams.get("priceMin") || ""
   const maxPrice = searchParams.get("priceMax") || ""
   const inStock = searchParams.get("inStock") === "true"
+  const selectedCatalogFacets = useMemo(
+    () => parseCatalogFacets(searchParams),
+    [searchParams]
+  )
   const activeCount =
     selectedOptionValueIds.length +
+    selectedCatalogFacets.length +
     [minPrice, maxPrice, inStock ? "true" : ""].filter(Boolean).length
 
   useEffect(() => {
@@ -78,6 +88,7 @@ export default function RefinementList({
       params.delete("priceMin")
       params.delete("priceMax")
       params.delete("inStock")
+      params.delete(CATALOG_FACET_QUERY_KEY)
     })
 
   return (
@@ -193,6 +204,41 @@ export default function RefinementList({
                 )}
               />
             </button>
+          </div>
+
+          <div className="border-t border-[var(--color-border-soft)] py-5">
+            <p className="mb-3 text-sm font-medium text-[var(--color-ink)]">
+              ویژگی محصول
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {CATALOG_FACETS.map((facet) => {
+                const selected = selectedCatalogFacets.includes(facet.id)
+                return (
+                  <button
+                    key={facet.id}
+                    type="button"
+                    aria-pressed={selected}
+                    onClick={() =>
+                      updateQueryParams((params) => {
+                        const next = selectedCatalogFacets.includes(facet.id)
+                          ? selectedCatalogFacets.filter((id) => id !== facet.id)
+                          : [...selectedCatalogFacets, facet.id]
+                        params.delete(CATALOG_FACET_QUERY_KEY)
+                        next.forEach((id) => params.append(CATALOG_FACET_QUERY_KEY, id))
+                      })
+                    }
+                    className={clsx(
+                      "min-h-9 rounded-full border px-3 text-xs transition",
+                      selected
+                        ? "border-[var(--color-ink)] bg-[var(--color-ink)] text-white"
+                        : "border-[var(--color-border)] text-[var(--color-text-secondary)] hover:border-[var(--color-ink)]"
+                    )}
+                  >
+                    {facet.label}
+                  </button>
+                )
+              })}
+            </div>
           </div>
 
           {!hideOptionsPicker && (

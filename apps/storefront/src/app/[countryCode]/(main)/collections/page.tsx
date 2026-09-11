@@ -5,25 +5,24 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 
 export const metadata: Metadata = {
   title: "کالکشن‌ها",
-  description: "مجموعه‌های هماهنگ و قابل ترکیب هارمن دکور.",
+  description: "کالکشن‌های فیگور، گیمینگ و دکور چاپ سه‌بعدی 3DMorty.",
 }
 
 const collections = [
   {
-    title: "گوشه‌های دنج",
-    description:
-      "چراغ، میز کنارمبلی و اکسسوری برای ساختن یک گوشه آرام و کاربردی.",
-    image: "/images/harmendecor/editorial-reading.webp",
+    title: "فیگورها و قهرمان‌ها",
+    description: "فیگورهای انیمه، اکشن و نیم‌تنه‌های کلکسیونی برای شلف شخصی شما.",
+    image: "/images/3dmorty/catalog/model-05-tactical-soldier/01-front-three-quarter.png",
   },
   {
-    title: "میز و پذیرایی",
-    description: "ترکیبی از چوب، سرامیک و نور ملایم برای دورهمی‌های گرم‌تر.",
-    image: "/images/harmendecor/editorial-dining.webp",
+    title: "میز گیمینگ",
+    description: "استندهای کنترلر و هدست برای مرتب‌کردن ستاپ گیمینگ.",
+    image: "/images/3dmorty/catalog/model-18-world-cup-controller-stand/01-front-three-quarter.png",
   },
   {
-    title: "نشیمن روشن",
-    description: "رنگ‌های خنثی و بافت‌های نرم برای نشیمنی آرام، روشن و هماهنگ.",
-    image: "/images/harmendecor/hero-living-room.webp",
+    title: "دکورهای خاص",
+    description: "اشیای رومیزی، نظم‌دهنده‌ها و هدیه‌هایی خارج از معمول.",
+    image: "/images/3dmorty/catalog/19-red-anatomical-heart-decor.png",
   },
 ] as const
 
@@ -33,8 +32,8 @@ export default function CollectionsPage() {
       <header className="content-container py-5 small:py-8">
         <div className="relative min-h-[430px] overflow-hidden rounded-[14px] small:min-h-[540px]">
           <Image
-            src="/images/harmendecor/hero-living-room.webp"
-            alt="نشیمن روشن با مجموعه هماهنگ هارمن"
+            src="/images/3dmorty/catalog/model-09-straw-hat-anime-bust/01-front-three-quarter.png"
+            alt="فیگور انیمه‌ای کلکسیونی 3DMorty"
             fill
             priority
             sizes="100vw"
@@ -43,14 +42,14 @@ export default function CollectionsPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/10 to-black/10" />
           <div className="absolute inset-x-0 bottom-0 p-6 text-white xsmall:p-8 small:p-12">
             <p className="text-xs font-medium text-white/75">
-              مجموعه‌های هارمن
+              کالکشن‌های 3DMorty
             </p>
             <h1 className="mt-3 max-w-3xl text-[32px] font-medium leading-[1.45] tracking-[-.04em] small:text-[48px]">
-              انتخاب‌هایی که کنار هم کامل می‌شوند
+              برای میز، شلف و کلکسیون تو
             </h1>
             <p className="mt-4 max-w-xl text-sm leading-7 text-white/75 small:text-base small:leading-8">
-              هر مجموعه، ترکیبی آماده از رنگ، بافت و فرم است تا انتخاب برای خانه
-              ساده‌تر و نتیجه هماهنگ‌تر باشد.
+              هر کالکشن بر پایه محصولاتی که واقعاً در کاتالوگ داریم ساخته شده تا انتخاب
+              فیگور، اکسسوری گیمینگ یا دکور مناسب آسان‌تر شود.
             </p>
           </div>
         </div>
@@ -60,7 +59,7 @@ export default function CollectionsPage() {
         <div className="mb-8 border-b border-[var(--color-border)] pb-5 small:mb-10">
           <div>
             <p className="text-xs font-medium text-[var(--color-accent-dark)]">
-              برای هر فضا
+              برای هر سلیقه
             </p>
             <h2 className="mt-2 text-[26px] font-medium small:text-[34px]">
               مجموعه موردنظر را انتخاب کنید

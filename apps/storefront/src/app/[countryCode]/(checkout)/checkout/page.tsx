@@ -7,7 +7,7 @@ import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
 export const metadata: Metadata = {
-  title: "نهایی‌کردن خرید | هارمن دکور",
+  title: "نهایی‌کردن خرید | 3DMorty",
 }
 
 export default async function Checkout() {

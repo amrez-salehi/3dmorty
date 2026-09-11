@@ -3,8 +3,8 @@ import { Metadata } from "next"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 
 export const metadata: Metadata = {
-  title: "تماس با هارمن",
-  description: "پشتیبانی سفارش و مشاوره انتخاب محصولات هارمن دکور.",
+  title: "تماس با 3DMorty",
+  description: "پشتیبانی سفارش و مشاوره انتخاب محصولات 3DMorty.",
 }
 
 export default function ContactPage() {
@@ -13,7 +13,7 @@ export default function ContactPage() {
       <header className="grid gap-7 border-b border-[var(--color-border)] pb-9 small:grid-cols-[1.2fr_.8fr] small:items-end small:gap-16 small:pb-12">
         <div>
           <p className="text-xs font-medium text-[var(--color-accent-dark)]">
-            تماس با هارمن
+            تماس با 3DMorty
           </p>
           <h1 className="mt-3 max-w-2xl text-[34px] font-medium leading-[1.45] tracking-[-.045em] text-[var(--color-ink)] small:text-[46px]">
             چطور می‌توانیم کمکتان کنیم؟
@@ -21,7 +21,7 @@ export default function ContactPage() {
         </div>
         <p className="max-w-lg text-sm leading-8 text-[var(--color-text-secondary)] small:text-[15px]">
           برای راهنمایی محصول، ارسال یا پیگیری سفارش پیام بگذارید. پاسخ تیم
-          هارمن در ساعات کاری برایتان ارسال می‌شود.
+          3DMorty در ساعات کاری برایتان ارسال می‌شود.
         </p>
       </header>
 
@@ -30,7 +30,7 @@ export default function ContactPage() {
           <div>
             <p className="text-xs font-medium text-white/50">راه‌های ارتباطی</p>
             <h2 className="mt-3 text-[25px] font-medium leading-[1.5]">
-              مستقیم با تیم هارمن در ارتباط باشید
+              مستقیم با تیم 3DMorty در ارتباط باشید
             </h2>
           </div>
 
@@ -39,9 +39,9 @@ export default function ContactPage() {
               <a
                 dir="ltr"
                 className="font-latin inline-block text-sm text-white transition hover:text-white/70"
-                href="mailto:hello@harmendecor.com"
+                href="mailto:hello@3dmorty.ir"
               >
-                hello@harmendecor.com
+                hello@3dmorty.ir
               </a>
             </ContactItem>
             <ContactItem icon={<ClockIcon />} title="ساعات پاسخ‌گویی">
@@ -77,7 +77,7 @@ export default function ContactPage() {
           </div>
 
           <form
-            action="mailto:hello@harmendecor.com"
+            action="mailto:hello@3dmorty.ir"
             method="post"
             encType="text/plain"
             className="grid gap-5 xsmall:grid-cols-2"

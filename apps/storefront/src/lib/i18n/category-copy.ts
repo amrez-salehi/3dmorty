@@ -1,8 +1,8 @@
 const names: Record<string, string> = {
-  "home-decoration": "دکوراسیون خانه",
-  shirts: "پوشاک",
-  merch: "لوازم جانبی",
-  sweatshirts: "سویشرت",
+  "figures-collectibles": "فیگورها و کلکسیونی",
+  "desk-gaming": "گیمینگ و میز کار",
+  "organizers-decor": "دکور و نظم‌دهنده",
+  "gift-hair-accessories": "هدیه و اکسسوری",
 }
 
 export function getPersianCategoryName(handle?: string | null, fallback?: string | null) {

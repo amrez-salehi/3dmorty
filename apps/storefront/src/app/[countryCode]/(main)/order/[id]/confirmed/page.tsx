@@ -7,7 +7,7 @@ type Props = {
   params: Promise<{ id: string }>
 }
 export const metadata: Metadata = {
-  title: "سفارش با موفقیت ثبت شد | هارمن دکور",
+  title: "سفارش با موفقیت ثبت شد | 3DMorty",
   description: "سفارش شما با موفقیت ثبت شد.",
 }
 

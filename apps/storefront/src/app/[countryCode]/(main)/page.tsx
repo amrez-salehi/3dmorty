@@ -6,8 +6,8 @@ import { getRegion } from "@lib/data/regions"
 import { getLocale } from "@lib/data/locale-actions"
 
 export const metadata: Metadata = {
-  title: "جزئیاتی برای خانه‌ای ماندگار",
-  description: "مبلمان، نورپردازی و اکسسوری‌های معاصر، انتخاب‌شده برای ساختن خانه‌ای آرام و شخصی.",
+  title: "فیگور، دکور و کالکتبل چاپ سه‌بعدی",
+  description: "فیگورها، اکسسوری‌های گیمینگ، دکورهای رومیزی و هدیه‌های کلکسیونی 3DMorty.",
 }
 
 export default async function Home(props: {
@@ -22,8 +22,8 @@ export default async function Home(props: {
   const { response } = await listProducts({
     countryCode,
     queryParams: {
-      limit: 20,
-      fields: "*variants.calculated_price,+variants.inventory_quantity,*variants.images,*variants.options",
+      limit: 100,
+      fields: "*variants.calculated_price,+variants.inventory_quantity,*variants.images,*variants.options,+metadata,+tags,*categories",
     },
   })
   const locale = await getLocale()

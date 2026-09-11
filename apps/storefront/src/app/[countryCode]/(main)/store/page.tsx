@@ -1,12 +1,13 @@
 import { Metadata } from "next"
 
 import { parseOptionValueIds } from "@lib/util/product-option-filters"
+import { parseCatalogFacets } from "@lib/catalog-facets"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import StoreTemplate from "@modules/store/templates"
 
 export const metadata: Metadata = {
   title: "همه محصولات",
-  description: "مجموعه منتخب مبلمان، روشنایی و اکسسوری‌های خانه هارمن دکور.",
+  description: "تمام فیگورها، کالکتبل‌ها، دکورها و اکسسوری‌های چاپ سه‌بعدی 3DMorty.",
 }
 
 type StorePageSearchParams = Record<string, string | string[] | undefined> & {
@@ -17,6 +18,7 @@ type StorePageSearchParams = Record<string, string | string[] | undefined> & {
   priceMin?: string
   priceMax?: string
   inStock?: string
+  facet?: string | string[]
 }
 
 type Params = {
@@ -31,6 +33,7 @@ export default async function StorePage(props: Params) {
   const searchParams = await props.searchParams;
   const { sortBy, page, q, priceMin, priceMax, inStock } = searchParams
   const optionValueIds = parseOptionValueIds(searchParams)
+  const catalogFacets = parseCatalogFacets(searchParams)
 
   return (
     <StoreTemplate
@@ -42,6 +45,7 @@ export default async function StorePage(props: Params) {
       priceMin={priceMin}
       priceMax={priceMax}
       inStock={inStock === "true"}
+      catalogFacets={catalogFacets}
     />
   )
 }

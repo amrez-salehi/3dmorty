@@ -4,7 +4,7 @@ import { Suspense } from "react"
 import VerifyAccount from "@modules/account/components/verify-account"
 
 export const metadata: Metadata = {
-  title: "تأیید ایمیل | هارمن دکور",
+  title: "تأیید ایمیل | 3DMorty",
   description: "برای تکمیل ثبت‌نام، ایمیل خود را تأیید کنید.",
 }
 

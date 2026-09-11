@@ -37,7 +37,7 @@ const ProductTemplate: React.FC<ProductTemplateProps> = ({
       <div className="content-container">
         <nav className="mb-4 flex items-center gap-1.5 overflow-hidden text-[11px] text-[var(--color-text-muted)] small:mb-7 small:gap-2 small:text-xs" aria-label="مسیر صفحه">
           <LocalizedClientLink href="/" className="shrink-0 transition hover:text-[var(--color-accent-muted)]">خانه</LocalizedClientLink><span>/</span>
-          <LocalizedClientLink href="/categories/home-decoration" className="shrink-0 transition hover:text-[var(--color-accent-muted)]">دکوراسیون خانه</LocalizedClientLink><span>/</span>
+          <LocalizedClientLink href="/store" className="shrink-0 transition hover:text-[var(--color-accent-muted)]">فروشگاه 3DMorty</LocalizedClientLink><span>/</span>
           <span className="truncate text-[var(--color-text-secondary)]">{product.title}</span>
         </nav>
         <div className="grid grid-cols-1 items-start gap-7 small:grid-cols-[minmax(0,1.2fr)_minmax(360px,.8fr)] small:gap-12" data-testid="product-container">

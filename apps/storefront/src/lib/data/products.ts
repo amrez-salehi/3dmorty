@@ -1,6 +1,7 @@
 "use server"
 
 import { sdk } from "@lib/config"
+import { CatalogFacet } from "@lib/catalog-facets"
 import { OptionValueIds } from "@lib/util/product-option-filters"
 import { sortProducts } from "@lib/util/sort-products"
 import { HttpTypes } from "@medusajs/types"
@@ -15,6 +16,64 @@ type ProductListQueryParams = (HttpTypes.FindParams &
   price_min?: string
   price_max?: string
   in_stock?: string
+  facet?: string | string[]
+}
+
+const normalizeSearchText = (value: unknown) =>
+  String(value ?? "")
+    .toLocaleLowerCase("fa-IR")
+    .replace(/[يى]/g, "ی")
+    .replace(/ك/g, "ک")
+    .replace(/\s+/g, " ")
+    .trim()
+
+const searchAliases: Record<string, string[]> = {
+  ps5: ["پلی استیشن", "پلی‌استیشن", "playstation", "کنترلر"],
+  controller: ["کنترلر", "دسته بازی", "استند کنترلر"],
+  stand: ["استند", "پایه", "نگهدارنده"],
+  holder: ["نگهدارنده", "هولدر", "استند"],
+  figure: ["فیگور", "اکشن فیگور", "مجسمه"],
+  anime: ["انیمه", "وان پیس", "وان‌پیس"],
+  articulated: ["مفصلی", "متحرک", "انعطاف پذیر", "انعطاف‌پذیر"],
+  skull: ["جمجمه", "گوتیک"],
+  desk: ["میز", "رومیزی", "ستاپ"],
+}
+
+const metadataValues = (metadata: Record<string, unknown> | undefined) =>
+  Object.values(metadata || {}).flatMap((value) =>
+    Array.isArray(value) ? value : [value]
+  )
+
+const matchesCatalogSearch = (product: HttpTypes.StoreProduct, query?: string) => {
+  const terms = normalizeSearchText(query).split(" ").filter(Boolean)
+  if (!terms.length) return true
+
+  const metadata = product.metadata as Record<string, unknown> | undefined
+  const searchable = normalizeSearchText([
+    product.title,
+    product.description,
+    product.handle,
+    ...(product.tags || []).map((tag) => tag.value),
+    ...(product.categories || []).flatMap((category) => [category.name, category.handle]),
+    ...(product.variants || []).map((variant) => variant.sku),
+    ...metadataValues(metadata),
+  ].join(" "))
+
+  return terms.every(
+    (term) =>
+      searchable.includes(term) ||
+      searchAliases[term]?.some((alias) => searchable.includes(alias))
+  )
+}
+
+const matchesCatalogFacets = (
+  product: HttpTypes.StoreProduct,
+  facets: CatalogFacet[]
+) => {
+  if (!facets.length) return true
+  const metadata = (product.metadata || {}) as Record<string, unknown>
+
+  return facets.every((facet) => metadata[facet] === true || metadata[facet] === "true")
 }
 
 export const listProducts = async ({
@@ -114,8 +173,9 @@ export const listProductsWithSort = async ({
   queryParams?: ProductListQueryParams
 }> => {
   const limit = queryParams?.limit || 12
-  const { price_min, price_max, in_stock, ...apiQueryParams } =
+  const { price_min, price_max, in_stock, q, facet, ...apiQueryParams } =
     queryParams || {}
+  const catalogFacets = (Array.isArray(facet) ? facet : facet ? [facet] : []) as CatalogFacet[]
   const optionFilters = Array.from(
     new Set((optionValueIds || []).filter(Boolean))
   )
@@ -141,7 +201,7 @@ export const listProductsWithSort = async ({
       )
     )
     const hasStock = (product.variants || []).some(
-      (variant) => (variant.inventory_quantity ?? 0) > 0
+      (variant) => variant.manage_inventory === false || (variant.inventory_quantity ?? 0) > 0
     )
     const min = price_min ? Number(price_min) : null
     const max = price_max ? Number(price_max) : null
@@ -149,7 +209,9 @@ export const listProductsWithSort = async ({
     return (
       (!min || amount >= min) &&
       (!max || amount <= max) &&
-      (in_stock !== "true" || hasStock)
+      (in_stock !== "true" || hasStock) &&
+      matchesCatalogSearch(product, q) &&
+      matchesCatalogFacets(product, catalogFacets)
     )
   })
 

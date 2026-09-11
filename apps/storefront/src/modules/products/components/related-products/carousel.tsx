@@ -51,7 +51,7 @@ export default function RelatedProductsCarousel({ children }: { children: React.
         type="button"
         onClick={() => move(canMovePrevious ? -520 : 520)}
         aria-label={canMovePrevious ? "مشاهده کالاهای قبلی" : "مشاهده کالاهای بعدی"}
-        className={`${canMoveNext ? "small:flex" : "hidden"} absolute left-2 top-1/2 z-10 h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full ${canMovePrevious ? "border border-[#e2d8cc] bg-white text-[#625a51] hover:border-[#9a6947] hover:text-[#9a6947]" : "bg-[#bd7a45] text-white hover:bg-[#9a6947]"} text-2xl leading-none shadow-[0_5px_16px_rgba(39,35,31,0.12)] transition`}
+        className={`${canMoveNext ? "small:flex" : "hidden"} absolute left-2 top-1/2 z-10 h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full ${canMovePrevious ? "border border-[var(--color-border)] bg-white text-[var(--color-text-secondary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]" : "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-dark)]"} text-2xl leading-none shadow-[0_5px_16px_rgba(20,24,38,0.16)] transition`}
       >
         {canMovePrevious ? "‹" : "›"}
       </button>
@@ -62,7 +62,7 @@ export default function RelatedProductsCarousel({ children }: { children: React.
         type="button"
         onClick={() => move(canMoveNext ? 520 : -520)}
         aria-label={canMoveNext ? "مشاهده کالاهای بعدی" : "بازگشت به کالاهای قبلی"}
-        className={`${canMovePrevious ? "small:flex" : "hidden"} absolute right-2 top-1/2 z-10 h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full ${canMoveNext ? "bg-[#bd7a45] text-white hover:bg-[#9a6947]" : "border border-[#e2d8cc] bg-white text-[#625a51] hover:border-[#9a6947] hover:text-[#9a6947]"} text-2xl leading-none shadow-[0_5px_16px_rgba(65,48,35,0.16)] transition`}
+        className={`${canMovePrevious ? "small:flex" : "hidden"} absolute right-2 top-1/2 z-10 h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full ${canMoveNext ? "bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-dark)]" : "border border-[var(--color-border)] bg-white text-[var(--color-text-secondary)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"} text-2xl leading-none shadow-[0_5px_16px_rgba(20,24,38,0.16)] transition`}
       >
         {canMoveNext ? "›" : "‹"}
       </button>

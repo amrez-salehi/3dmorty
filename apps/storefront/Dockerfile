@@ -1,4 +1,4 @@
-FROM node:20-bookworm-slim AS dependencies
+cardbeecard.irFROM node:20-bookworm-slim AS dependencies
 WORKDIR /workspace
 RUN corepack enable && corepack prepare pnpm@10.11.1 --activate
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./

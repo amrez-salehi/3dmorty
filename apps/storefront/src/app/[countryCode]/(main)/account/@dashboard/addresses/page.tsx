@@ -7,7 +7,7 @@ import { getRegion } from "@lib/data/regions"
 import { retrieveCustomer } from "@lib/data/customer"
 
 export const metadata: Metadata = {
-  title: "آدرس‌های من | هارمن دکور",
+  title: "آدرس‌های من | 3DMorty",
   description: "آدرس‌های ارسال خود را مدیریت کنید.",
 }
 

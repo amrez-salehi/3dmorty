@@ -8,8 +8,8 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 
 const menuLinks = [
   ["فروشگاه", "همه محصولات", "/store"],
-  ["خرید بر اساس فضا", "نشیمن، غذاخوری و فضای مطالعه", "/store?view=room"],
-  ["کالکشن‌ها", "مجموعه‌های هماهنگ هارمن", "/collections"],
+  ["دسته‌بندی‌ها", "فیگور، گیمینگ، کاربردی و هدیه", "/store"],
+  ["کالکشن‌ها", "مجموعه‌های منتخب 3DMorty", "/collections"],
   ["محصولات تازه", "جدیدترین محصولات فروشگاه", "/store?sortBy=created_at"],
   ["علاقه‌مندی‌ها", "انتخاب‌های ذخیره‌شده شما", "/favorites"],
 ] as const
@@ -77,7 +77,7 @@ export default function MobileMenu() {
 
             <div className="px-5 pb-5 pt-6">
               <p className="text-xs font-medium text-[var(--color-accent-dark)]">
-                چه چیزی برای خانه می‌خواهید؟
+                امروز چه چیزی چاپ سه‌بعدی پیدا می‌کنید؟
               </p>
               <LocalizedClientLink
                 href="/search"

@@ -7,7 +7,7 @@ import { listOrders } from "@lib/data/orders"
 import { getLocale } from "@lib/data/locale-actions"
 
 export const metadata: Metadata = {
-  title: "حساب کاربری | هارمن دکور",
+  title: "حساب کاربری | 3DMorty",
   description: "مدیریت سفارش‌ها، پروفایل و آدرس‌های شما.",
 }
 

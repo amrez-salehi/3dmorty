@@ -19,11 +19,10 @@ export default function BrandLogo({
     return (
       <LocalizedClientLink
         href="/"
-        aria-label="Harmendecor"
-        className={`inline-flex h-12 w-9 shrink-0 items-center justify-center ${className}`}
+        aria-label="3DMorty"
+        className={`morty-mark inline-flex h-10 w-10 shrink-0 items-center justify-center ${className}`}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/brand/harmendecor-mark.png" alt="" width="31" height="48" className="h-12 w-auto object-contain" />
+        <span aria-hidden="true">3D</span>
       </LocalizedClientLink>
     )
   }
@@ -31,15 +30,13 @@ export default function BrandLogo({
   return (
     <LocalizedClientLink
       href="/"
-      aria-label="Harmendecor"
+      aria-label="3DMorty"
       className={`inline-flex shrink-0 items-center ${compact ? "gap-2.5" : "gap-3"} ${className}`}
     >
-      {/* The supplied monogram remains the primary mark; the wordmark is typeset for clarity at navigation sizes. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/brand/harmendecor-mark.png" alt="" width="31" height="48" className={`${compact ? "h-10" : "h-12"} w-auto object-contain ${imageClassName}`} />
+      <span className={`morty-mark ${compact ? "h-10 w-10 text-[11px]" : "h-12 w-12 text-xs"} ${imageClassName}`} aria-hidden="true">3D</span>
       <span className="flex flex-col items-start leading-none" aria-hidden="true">
-        <strong className={`font-latin font-medium tracking-[0.18em] text-[var(--color-ink)] ${compact ? "text-[13px]" : "text-[15px]"}`}>HARMEN</strong>
-        <span className={`font-latin mt-1 tracking-[0.42em] text-[var(--color-muted)] ${compact ? "text-[7px]" : "text-[9px]"}`}>DECOR</span>
+        <strong className={`font-latin font-bold tracking-[0.04em] text-[var(--color-ink)] ${compact ? "text-[15px]" : "text-[18px]"}`}>3DMorty</strong>
+        <span className={`mt-1 tracking-[0.1em] text-[var(--color-muted)] ${compact ? "text-[7px]" : "text-[9px]"}`}>فیگور · دکور · گیمینگ</span>
       </span>
     </LocalizedClientLink>
   )

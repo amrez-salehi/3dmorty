@@ -14,12 +14,9 @@ type OptionsPickerProps = {
 }
 
 const optionNames: Record<string, string> = {
-  Material: "جنس و متریال",
-  Color: "رنگ",
-  "Home Color": "رنگ",
-  Room: "فضای مناسب",
-  "Decor Style": "سبک دکوراسیون",
-  Dimensions: "ابعاد",
+  "متریال": "متریال چاپ",
+  "رنگ": "رنگ",
+  "نوع محصول": "نوع محصول",
 }
 
 const valueNames: Record<string, string> = {

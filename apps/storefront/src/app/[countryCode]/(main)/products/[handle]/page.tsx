@@ -50,11 +50,11 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   }
 
   return {
-    title: `${product.title} | HARMENDECOR`,
-    description: product.description || `خرید ${product.title} از هارمن دکور.`,
+    title: `${product.title} | 3DMorty`,
+    description: product.description || `خرید ${product.title} از 3DMorty.`,
     openGraph: {
-      title: `${product.title} | HARMENDECOR`,
-      description: product.description || `خرید ${product.title} از هارمن دکور.`,
+      title: `${product.title} | 3DMorty`,
+      description: product.description || `خرید ${product.title} از 3DMorty.`,
       images: product.thumbnail ? [product.thumbnail] : [],
     },
   }

@@ -20,29 +20,39 @@ export default async function RelatedProducts({
     return null
   }
 
-  // edit this function to define your related products logic
-  const queryParams: HttpTypes.StoreProductListParams = {}
-  if (region?.id) {
-    queryParams.region_id = region.id
-  }
-  if (product.collection_id) {
-    queryParams.collection_id = [product.collection_id]
-  }
-  if (product.tags) {
-    queryParams.tag_id = product.tags
-      .map((t) => t.id)
-      .filter(Boolean) as string[]
-  }
-  queryParams.is_giftcard = false
-
+  const metadata = (product.metadata || {}) as Record<string, unknown>
+  const textValues = (value: unknown) =>
+    Array.isArray(value) ? value.map(String) : value ? [String(value)] : []
+  const productTags = new Set([
+    ...(product.tags || []).map((tag) => tag.value).filter(Boolean),
+    ...textValues(metadata.tags),
+  ])
   const products = await listProducts({
-    queryParams,
+    queryParams: { is_giftcard: false, limit: 100 },
     countryCode,
-  }).then(({ response }) => {
-    return response.products.filter(
-      (responseProduct) => responseProduct.id !== product.id
-    )
-  })
+  }).then(({ response }) =>
+    response.products
+      .filter((candidate) => candidate.id !== product.id)
+      .map((candidate) => {
+        const candidateMetadata = (candidate.metadata || {}) as Record<string, unknown>
+        const candidateTags = new Set([
+          ...(candidate.tags || []).map((tag) => tag.value).filter(Boolean),
+          ...textValues(candidateMetadata.tags),
+        ])
+        const sharedTags = Array.from(productTags).filter((tag) => candidateTags.has(tag)).length
+        const score =
+          (metadata.catalog_group === candidateMetadata.catalog_group ? 5 : 0) +
+          (metadata.product_type === candidateMetadata.product_type ? 4 : 0) +
+          (metadata.character && metadata.character === candidateMetadata.character ? 5 : 0) +
+          (metadata.use_cases === candidateMetadata.use_cases ? 2 : 0) +
+          sharedTags * 2
+        return { candidate, score }
+      })
+      .filter(({ score }) => score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 8)
+      .map(({ candidate }) => candidate)
+  )
 
   if (!products.length) {
     return null
@@ -52,9 +62,9 @@ export default async function RelatedProducts({
     <div className="content-container">
       <div className="mb-8 flex items-end justify-between border-b border-[var(--color-border)] pb-6">
         <div>
-          <p className="text-xs font-medium text-[var(--color-accent-dark)]">پیشنهادهای هماهنگ</p>
-          <h2 className="mt-3 text-2xl font-medium text-[var(--color-ink)] small:text-3xl">چیدمان را کامل کنید</h2>
-          <p className="mt-2 text-xs text-[var(--color-muted)]">قطعاتی با فرم و متریال هماهنگ برای کنار هم نشستن.</p>
+          <p className="text-xs font-medium text-[var(--color-accent-dark)]">محصولات مرتبط</p>
+          <h2 className="mt-3 text-2xl font-medium text-[var(--color-ink)] small:text-3xl">انتخاب‌های هم‌تم</h2>
+          <p className="mt-2 text-xs text-[var(--color-muted)]">بر پایهٔ دسته، کاربرد، تم و ویژگی‌های همین محصول.</p>
         </div>
         <LocalizedClientLink href="/store" className="hd-link hidden small:inline-flex">مشاهده محصولات بیشتر</LocalizedClientLink>
       </div>

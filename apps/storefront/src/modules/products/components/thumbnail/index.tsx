@@ -21,7 +21,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   size = "small",
   isFeatured: _isFeatured,
   className,
-  productTitle = "محصول هارمن دکور",
+  productTitle = "محصول 3DMorty",
   fit = "cover",
   "data-testid": dataTestid,
 }) => {
@@ -61,7 +61,7 @@ const ImageOrPlaceholder = ({
   return image ? (
     <Image
         src={image}
-        alt={productTitle || "محصول هارمن دکور"}
+        alt={productTitle || "محصول 3DMorty"}
         className={`absolute inset-0 object-center transition duration-700 ${
           fit === "contain"
             ? "object-contain p-1.5"

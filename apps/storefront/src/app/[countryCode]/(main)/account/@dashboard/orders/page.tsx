@@ -6,7 +6,7 @@ import { listOrders } from "@lib/data/orders"
 import TransferRequestForm from "@modules/account/components/transfer-request-form"
 
 export const metadata: Metadata = {
-  title: "سفارش‌های من | هارمن دکور",
+  title: "سفارش‌های من | 3DMorty",
   description: "سوابق سفارش‌های خود را ببینید.",
 }
 

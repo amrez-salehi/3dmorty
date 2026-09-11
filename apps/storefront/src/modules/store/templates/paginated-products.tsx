@@ -1,4 +1,5 @@
 import { listProductsWithSort } from "@lib/data/products"
+import { CatalogFacet } from "@lib/catalog-facets"
 import { getRegion } from "@lib/data/regions"
 import { OptionValueIds } from "@lib/util/product-option-filters"
 import ProductPreview from "@modules/products/components/product-preview"
@@ -20,6 +21,7 @@ type PaginatedProductsParams = {
   price_min?: string
   price_max?: string
   in_stock?: string
+  facet?: CatalogFacet[]
 }
 
 export default async function PaginatedProducts({
@@ -34,6 +36,7 @@ export default async function PaginatedProducts({
   priceMin,
   priceMax,
   inStock,
+  catalogFacets,
 }: {
   sortBy?: SortOptions
   page: number
@@ -46,6 +49,7 @@ export default async function PaginatedProducts({
   priceMin?: string
   priceMax?: string
   inStock?: boolean
+  catalogFacets?: CatalogFacet[]
 }) {
   const queryParams: PaginatedProductsParams = {
     limit: PRODUCT_LIMIT,
@@ -74,6 +78,7 @@ export default async function PaginatedProducts({
   if (priceMin) queryParams.price_min = priceMin
   if (priceMax) queryParams.price_max = priceMax
   if (inStock) queryParams.in_stock = "true"
+  if (catalogFacets?.length) queryParams.facet = catalogFacets
 
   const region = await getRegion(countryCode)
 
