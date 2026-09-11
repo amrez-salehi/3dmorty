@@ -33,7 +33,7 @@
     "@medusajs/framework": "2.19.0",
     "@medusajs/js-sdk": "2.19.0",
     "@medusajs/medusa": "2.19.0",
-    "sharp": "0.35.3",
+    "sharp": "0.35.4",
     "zod": "4.2.0"
   },
   "devDependencies": {
