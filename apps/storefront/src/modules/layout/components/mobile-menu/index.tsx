@@ -60,7 +60,7 @@ export default function MobileMenu() {
 
           <aside
             id="mobile-navigation-panel"
-            className="absolute inset-y-0 right-0 flex w-[min(92vw,390px)] flex-col overflow-y-auto rounded-l-[18px] bg-[var(--color-background)] shadow-[-24px_0_70px_rgba(25,24,21,.22)]"
+            className="mobile-navigation-panel absolute inset-y-0 right-0 flex w-[min(92vw,390px)] flex-col overflow-y-auto rounded-l-[18px] shadow-[-24px_0_70px_rgba(25,24,21,.22)]"
             aria-label="منوی اصلی موبایل"
           >
             <div className="flex h-[76px] shrink-0 items-center justify-between border-b border-[var(--color-border)] px-5">
