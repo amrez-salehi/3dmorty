@@ -40,7 +40,9 @@
   --color-primary: #171624;
   --color-primary-soft: #2a2841;
   --color-ink: #191827;
-  --color-background: #f1f2fc;
+  /* A translucent page surface keeps the site-wide blue/lilac canvas visible
+     behind every route, including cart, account and checkout. */
+  --color-background: rgba(231, 237, 255, 0.58);
   --color-surface: #ececf4;
   --color-surface-strong: #dfdeeb;
   --color-cream: #d9d6f0;
@@ -67,9 +69,10 @@ html {
   font-family: var(--font-persian);
   min-height: 100%;
   background:
-    radial-gradient(circle at 8% -8%, rgba(167, 211, 255, 0.62), transparent 34rem),
-    radial-gradient(circle at 96% 105%, rgba(207, 181, 255, 0.56), transparent 38rem),
-    linear-gradient(135deg, #eaf3ff 0%, #f8f6ff 48%, #edf0ff 100%);
+    radial-gradient(circle at 5% -8%, rgba(123, 183, 255, 0.58), transparent 36rem),
+    radial-gradient(circle at 96% 36%, rgba(190, 151, 255, 0.46), transparent 42rem),
+    radial-gradient(circle at 35% 110%, rgba(139, 186, 255, 0.34), transparent 40rem),
+    linear-gradient(135deg, #e1edff 0%, #eeeaff 52%, #e2eaff 100%);
   background-attachment: fixed;
   color: var(--color-text);
   scroll-behavior: smooth;
