@@ -108,20 +108,6 @@ export default function MobileMenu() {
               ))}
             </nav>
 
-            <div className="mt-auto grid grid-cols-2 gap-2 border-t border-[var(--color-border)] bg-[var(--color-light-cream)] p-5">
-              <LocalizedClientLink
-                href="/account"
-                className="flex min-h-12 items-center justify-center rounded-[6px] border border-[var(--color-border)] bg-[var(--color-background)] text-sm font-medium"
-              >
-                حساب کاربری
-              </LocalizedClientLink>
-              <LocalizedClientLink
-                href="/contact"
-                className="flex min-h-12 items-center justify-center rounded-[6px] bg-[var(--color-ink)] text-sm font-medium text-white"
-              >
-                تماس با ما
-              </LocalizedClientLink>
-            </div>
           </aside>
         </div>
       )}

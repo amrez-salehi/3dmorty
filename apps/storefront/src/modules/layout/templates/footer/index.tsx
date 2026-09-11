@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { getLocale } from "@lib/data/locale-actions"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import { BrandCube } from "@modules/common/components/brand-logo"
 
 const footerGroups = [
   { title: "دسترسی سریع", links: [["صفحه اصلی", "/"], ["دسته‌بندی‌ها", "/collections"], ["محصولات", "/store"], ["تازه‌ها", "/store?sortBy=created_at"], ["تماس با ما", "/contact"]] },
@@ -21,7 +22,7 @@ export default async function Footer() {
     </div></div>
 
     <div className="content-container footer-violet-main">
-      <div className="footer-brand"><LocalizedClientLink href="/" aria-label="3DMorty" className="footer-brand-logo"><span>3D</span><b>3DMORTY</b></LocalizedClientLink><p>هر ایده، یک اثر سه‌بعدی.<br />مرجع فیگور، دکوری و اکسسوری‌های خاص برای میز و ویترین شما.</p><SocialLinks /></div>
+      <div className="footer-brand"><LocalizedClientLink href="/" aria-label="3DMorty" className="footer-brand-logo"><BrandCube /><span><b>3DMORTY</b><small>فراتر از تخیل، در دستان تو</small></span></LocalizedClientLink><p>هر ایده، یک اثر سه‌بعدی.<br />مرجع فیگور، دکوری و اکسسوری‌های خاص برای میز و ویترین شما.</p><SocialLinks /></div>
       {footerGroups.map((group) => <FooterColumn key={group.title} {...group} />)}
       <address className="footer-contact"><h2>با ما در تماس باشید</h2><a href="https://maps.google.com/?q=Tehran" target="_blank" rel="noreferrer">تهران، خیابان خلاقیت، پلاک ۱۲</a><a href="tel:+982112345678">۰۲۱-۱۲۳۴۵۶۷۸</a><a href="mailto:info@3dmorty.ir">info@3dmorty.ir</a></address>
     </div>

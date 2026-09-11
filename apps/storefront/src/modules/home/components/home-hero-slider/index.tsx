@@ -3,6 +3,7 @@
 import Image from "next/image"
 import { useEffect, useState } from "react"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import { BrandCube } from "@modules/common/components/brand-logo"
 
 const slides = [
   {
@@ -71,7 +72,7 @@ export default function HomeHeroSlider() {
           مشاهده مجموعه
         </LocalizedClientLink>
         <h1 id="home-hero-title" className="home-minimal-brand" aria-label="3DMorty">
-          <span className="morty-mark">3D</span>
+          <BrandCube className="home-minimal-cube" />
           <span>
             <strong>3DMorty</strong>
             <small>PRINTED COLLECTIBLES</small>

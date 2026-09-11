@@ -5,6 +5,7 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import CartButton from "@modules/layout/components/cart-button"
 import SearchBar from "@modules/layout/components/search-bar"
 import MobileMenu from "@modules/layout/components/mobile-menu"
+import { BrandCube } from "@modules/common/components/brand-logo"
 
 const Icon = ({
   name,
@@ -155,5 +156,5 @@ export default async function Nav() {
 }
 
 function BrandMark() {
-  return <><span className="brand-header-cube">3D</span><span className="brand-header-wordmark"><strong>3DMORTY</strong><small>فراتر از تخیل، در دستان تو</small></span></>
+  return <><BrandCube className="brand-header-cube" /><span className="brand-header-wordmark"><strong>3DMORTY</strong><small>فراتر از تخیل، در دستان تو</small></span></>
 }
