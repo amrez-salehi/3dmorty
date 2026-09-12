@@ -5,8 +5,8 @@ import ProductPreview from "@modules/products/components/product-preview"
 import HomeHeroSlider from "@modules/home/components/home-hero-slider"
 
 const categoryEdits = [
-  { title: "فیگورها و کلکسیونی", image: "/images/3dmorty/catalog/model-08-viking-bust/01-front-three-quarter.png", href: "/categories/figures-collectibles" },
-  { title: "گیمینگ و میز کار", image: "/images/3dmorty/catalog/model-18-world-cup-controller-stand/01-front-three-quarter.png", href: "/categories/desk-gaming" },
+  { title: "فیگورها و کلکسیونی", image: "/images/3dmorty/catalog/generated/viking-warrior-bust-color.png", href: "/categories/figures-collectibles" },
+  { title: "گیمینگ و میز کار", image: "/images/3dmorty/catalog/generated/world-cup-controller-stand-color.png", href: "/categories/desk-gaming" },
   { title: "دکور و نظم‌دهنده", image: "/images/3dmorty/catalog/06-gothic-corset-brush-holder.png", href: "/categories/organizers-decor" },
   { title: "هدیه و اکسسوری", image: "/images/3dmorty/catalog/12-botanical-hair-stick-lifestyle.png", href: "/categories/gift-hair-accessories" },
 ]

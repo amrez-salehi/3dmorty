@@ -40,6 +40,8 @@
 
 # Medusa DTC Starter
 
+> راهنمای فارسی آماده‌سازی و استقرار Production روی VPS: [VPS_DEPLOYMENT_FA.md](./VPS_DEPLOYMENT_FA.md)
+
 A production-ready monorepo starter for direct-to-consumer ecommerce stores powered by Medusa and Next.js. Includes a fully featured storefront with product browsing, cart, checkout, customer accounts, and order management.
 
 ## Features

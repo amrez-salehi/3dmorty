@@ -1,5 +1,6 @@
 import { Button, Container, Text } from "@modules/common/components/ui"
 import { cookies as nextCookies } from "next/headers"
+import Link from "next/link"
 
 async function ProductOnboardingCta() {
   const cookies = await nextCookies()
@@ -19,9 +20,9 @@ async function ProductOnboardingCta() {
         <Text className="text-ui-fg-subtle text-small-regular">
           You can now continue setting up your store in the admin.
         </Text>
-        <a href="http://localhost:7001/a/orders?onboarding_step=create_order_nextjs">
+        <Link href="/admin/orders?onboarding_step=create_order_nextjs">
           <Button className="w-full">ادامه تنظیمات در پنل مدیریت</Button>
-        </a>
+        </Link>
       </div>
     </Container>
   )

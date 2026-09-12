@@ -14,6 +14,7 @@ import {
 import { validateAndTransformBody } from "@medusajs/framework/http"
 import { signIntegrationRequest, stableStringify } from "../lib/integration-signature"
 import { createHash } from "node:crypto"
+import { getRedisConnection } from "../lib/redis"
 
 const asNumber = (value: any) =>
   Number(value && typeof value === "object" && "value" in value ? value.value : value || 0)
@@ -51,9 +52,7 @@ const authRateLimit = (
       .update(`${req.path}\0${kind}\0${value}`)
       .digest("hex")
     try {
-      const redis = req.scope.resolve<RedisRateLimitConnection>(
-        "eventBusRedisConnection"
-      )
+      const redis = getRedisConnection() as RedisRateLimitConnection
       const [accountAllowed, addressAllowed] = await Promise.all([
         redis.eval(
           RATE_LIMIT_SCRIPT,

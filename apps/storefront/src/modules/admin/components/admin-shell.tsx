@@ -125,7 +125,7 @@ export default function AdminShell({ children, title, description }: { children:
   const pathname = usePathname(); const router = useRouter(); const [open, setOpen] = useState(false); const [loggedIn, setLoggedIn] = useState<boolean | null>(null)
   useEffect(() => { adminSdk.client.fetch("/admin/users/me").then(() => setLoggedIn(true)).catch(() => setLoggedIn(false)) }, [])
   if (loggedIn === null) return <div className="admin-root"><div className="admin-loading" style={{ minHeight: "100vh", display: "grid", placeItems: "center" }}>در حال آماده‌سازی پنل…</div></div>
-  if (!loggedIn) return <AdminLogin onLoggedIn={() => setLoggedIn(true)} />
+  if (!loggedIn) return <AdminLogin onLoggedIn={() => window.location.reload()} />
   const logout = async () => { await adminSdk.client.fetch("/auth/logout", { method: "POST", body: {} }).catch(() => undefined); setLoggedIn(false); router.push("/admin") }
   return <div className="admin-root"><div className="admin-layout">
     <aside className={`admin-side ${open ? "open" : ""}`}>
