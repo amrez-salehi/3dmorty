@@ -2,8 +2,22 @@
 
 import Medusa from "@medusajs/js-sdk"
 
+const adminProxyUrl = typeof window === "undefined"
+  ? "/api/medusa"
+  : new URL("/api/medusa", window.location.origin).toString()
+
 export const adminSdk = new Medusa({
-  baseUrl: "/api/medusa",
+  // The Medusa SDK normalizes request paths through `new URL(baseUrl)`, so a
+  // relative base URL prevents every browser-side request before it reaches
+  // the Next proxy.
+  baseUrl: adminProxyUrl,
+  // Authentication is stored only in the HttpOnly cookie issued by the proxy.
+  // Without session mode the SDK uses `credentials: omit`, so the browser
+  // drops the login cookie and every following admin request is unauthorized.
+  auth: {
+    type: "session",
+    fetchCredentials: "include",
+  },
   debug: process.env.NODE_ENV === "development",
 })
 

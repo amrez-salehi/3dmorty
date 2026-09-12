@@ -9,7 +9,7 @@
     "dev": "pnpm -r dev",
     "build": "pnpm -r build",
     "start": "turbo start",
-    "lint": "turbo lint",
+    "lint": "pnpm --filter @dtc/backend lint && pnpm --filter @dtc/storefront lint",
     "test": "turbo test",
     "security:check": "node --test scripts/security-regressions.test.mjs",
     "production:check": "node scripts/production-readiness.mjs",

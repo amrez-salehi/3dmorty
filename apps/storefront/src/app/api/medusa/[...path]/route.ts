@@ -49,7 +49,9 @@ const cookieOptions = (maxAge: number) => ({
 
 function validOrigin(request: NextRequest) {
   if (!MUTATIONS.has(request.method)) return true
-  const expected = process.env.NEXT_PUBLIC_BASE_URL
+  const expected = process.env.NODE_ENV === "production"
+    ? process.env.NEXT_PUBLIC_BASE_URL
+    : request.nextUrl.origin
   if (!expected && process.env.NODE_ENV === "production") return false
   const origin = request.headers.get("origin")
   const fetchSite = request.headers.get("sec-fetch-site")

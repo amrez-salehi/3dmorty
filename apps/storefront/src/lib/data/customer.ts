@@ -31,6 +31,8 @@ type AuthenticationResult =
   | { location: string }
   | { mfa_challenge: unknown }
 
+const genericAuthError = "عملیات احراز هویت انجام نشد. اطلاعات را بررسی کنید یا دوباره تلاش کنید."
+
 const forwardedAddressHeaders = async () => {
   const requestHeaders = await headers()
   const forwardedFor = requestHeaders.get("x-forwarded-for")
@@ -136,7 +138,7 @@ export async function signup(
       fetchError.statusText !== "Unauthorized" ||
       fetchError.message !== "Identity with email already exists"
     ) {
-      return { state: "error", error: String(error) }
+      return { state: "error", error: genericAuthError }
     }
   }
 
@@ -171,8 +173,8 @@ async function completeLogin(
 
   try {
     result = await authenticateCustomer(email, password)
-  } catch (error) {
-    return { state: "error", error: String(error) }
+  } catch {
+    return { state: "error", error: genericAuthError }
   }
 
   // A `location` is returned by third-party auth providers, which this flow
@@ -237,8 +239,8 @@ async function completeLogin(
         throw new Error("Authentication requires unsupported additional steps")
       }
       token = authenticated.token
-    } catch (error) {
-      return { state: "error", error: String(error) }
+    } catch {
+      return { state: "error", error: genericAuthError }
     }
 
     await removePendingCustomer()

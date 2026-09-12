@@ -1509,6 +1509,33 @@ html[lang="en"] body {
   }
 }
 
+@media (max-width: 420px) {
+  .home-benefits {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 14px 0;
+  }
+  .home-benefit,
+  .home-benefit:nth-child(2) {
+    border-left: 0;
+    border-bottom: 1px solid var(--color-border);
+    padding: 13px 4px;
+  }
+  .home-benefit:nth-child(-n + 2),
+  .home-benefit:nth-child(n + 3) {
+    padding-top: 13px;
+    padding-bottom: 13px;
+  }
+  .home-benefit:last-child {
+    border-bottom: 0;
+  }
+  .home-benefit small {
+    display: block;
+    overflow: visible;
+    text-overflow: clip;
+    white-space: normal;
+  }
+}
+
 @media (max-width: 380px) {
   .content-container {
     @apply px-3;

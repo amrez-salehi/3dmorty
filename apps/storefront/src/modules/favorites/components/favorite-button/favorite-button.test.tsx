@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react"
 import { beforeEach, describe, expect, it, vi } from "vitest"
+import type { ComponentProps } from "react"
 
 import FavoriteButton from "."
 import type { FavoriteProduct } from "@lib/favorites/types"
@@ -21,7 +22,9 @@ vi.mock("@modules/favorites/context/favorites-context", () => ({
 }))
 
 vi.mock("@modules/common/components/localized-client-link", () => ({
-  default: ({ children, ...props }: any) => <a {...props}>{children}</a>,
+  default: ({ children, ...props }: ComponentProps<"a">) => (
+    <a {...props}>{children}</a>
+  ),
 }))
 
 const product = {

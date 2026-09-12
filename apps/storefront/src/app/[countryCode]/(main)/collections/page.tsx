@@ -12,12 +12,12 @@ const collections = [
   {
     title: "فیگورها و قهرمان‌ها",
     description: "فیگورهای انیمه، اکشن و نیم‌تنه‌های کلکسیونی برای شلف شخصی شما.",
-    image: "/images/3dmorty/catalog/model-05-tactical-soldier/01-front-three-quarter.png",
+    image: "/images/3dmorty/catalog/generated/tactical-soldier-color.png",
   },
   {
     title: "میز گیمینگ",
     description: "استندهای کنترلر و هدست برای مرتب‌کردن ستاپ گیمینگ.",
-    image: "/images/3dmorty/catalog/model-18-world-cup-controller-stand/01-front-three-quarter.png",
+    image: "/images/3dmorty/catalog/generated/world-cup-controller-stand-color.png",
   },
   {
     title: "دکورهای خاص",
@@ -32,7 +32,7 @@ export default function CollectionsPage() {
       <header className="content-container py-5 small:py-8">
         <div className="relative min-h-[430px] overflow-hidden rounded-[14px] small:min-h-[540px]">
           <Image
-            src="/images/3dmorty/catalog/model-09-straw-hat-anime-bust/01-front-three-quarter.png"
+            src="/images/3dmorty/catalog/generated/straw-hat-anime-bust-color.png"
             alt="فیگور انیمه‌ای کلکسیونی 3DMorty"
             fill
             priority

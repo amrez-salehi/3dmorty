@@ -1,11 +1,28 @@
 import Image from "next/image"
+import type { ReactElement } from "react"
 import { getLocale } from "@lib/data/locale-actions"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import { BrandCube } from "@modules/common/components/brand-logo"
 
+type SocialLink = {
+  label: string
+  href?: string
+  Icon: () => ReactElement
+}
+
+const socialLinks = [
+  { label: "اینستاگرام", href: process.env.NEXT_PUBLIC_INSTAGRAM_URL, Icon: InstagramIcon },
+  { label: "تلگرام", href: process.env.NEXT_PUBLIC_TELEGRAM_URL, Icon: TelegramIcon },
+  { label: "یوتیوب", href: process.env.NEXT_PUBLIC_YOUTUBE_URL, Icon: YoutubeIcon },
+  { label: "پینترست", href: process.env.NEXT_PUBLIC_PINTEREST_URL, Icon: PinterestIcon },
+].filter(
+  (link): link is SocialLink & { href: string } =>
+    typeof link.href === "string" && /^https:\/\//.test(link.href)
+)
+
 const footerGroups = [
   { title: "دسترسی سریع", links: [["صفحه اصلی", "/"], ["دسته‌بندی‌ها", "/collections"], ["محصولات", "/store"], ["تازه‌ها", "/store?sortBy=created_at"], ["تماس با ما", "/contact"]] },
-  { title: "خدمات مشتریان", links: [["سوالات متداول", "/faq"], ["پیگیری سفارش", "/account/orders"], ["شرایط و قوانین", "/faq#shipping"], ["حریم خصوصی", "/faq"], ["بازگشت کالا", "/faq#returns"]] },
+  { title: "خدمات مشتریان", links: [["سوالات متداول", "/faq"], ["پیگیری سفارش", "/account/orders"], ["شرایط و قوانین", "/content/terms-of-use"], ["حریم خصوصی", "/content/privacy-policy"], ["بازگشت کالا", "/faq#returns"]] },
 ] as const
 
 export default async function Footer() {
@@ -35,11 +52,14 @@ function FooterColumn({ title, links }: { title: string; links: ReadonlyArray<re
 }
 
 function SocialLinks() {
+  if (!socialLinks.length) return null
+
   return <div className="footer-violet-social" aria-label="شبکه‌های اجتماعی">
-    <a href="#" aria-label="اینستاگرام"><InstagramIcon /></a>
-    <a href="#" aria-label="تلگرام"><TelegramIcon /></a>
-    <a href="#" aria-label="یوتیوب"><YoutubeIcon /></a>
-    <a href="#" aria-label="پینترست"><PinterestIcon /></a>
+    {socialLinks.map(({ label, href, Icon }) => (
+      <a key={label} href={href} aria-label={label} target="_blank" rel="noreferrer">
+        <Icon />
+      </a>
+    ))}
   </div>
 }
 

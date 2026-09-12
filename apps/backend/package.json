@@ -33,6 +33,7 @@
     "@medusajs/framework": "2.19.0",
     "@medusajs/js-sdk": "2.19.0",
     "@medusajs/medusa": "2.19.0",
+    "ioredis": "5.8.2",
     "sharp": "0.35.3",
     "zod": "4.2.0"
   },
